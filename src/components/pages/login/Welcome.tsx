@@ -1,33 +1,63 @@
-import styled from "styled-components";
-import { theme } from "../../../theme";
+import { StyleSheet, Text, View } from "react-native"
+import { theme } from "../../../theme"
 
 export default function Welcome() {
     return (
-        <WelcomeStyled>
-            <h1>Bienvenue chez nous !</h1>
-            <hr />
-            <h2>Connectez-vous</h2>
-        </WelcomeStyled>
+        <View>
+            <Text style={styles.h1}>Bienvenue chez nous !</Text>
+            <View style={styles.hr}></View>
+            <Text style={styles.h2}>Connectez-vous</Text>
+        </View>
     )
 }
 
-const WelcomeStyled = styled.div`
-    h1, h2 {
-        color: ${theme.colors.white};
-        font-weight: ${theme.fonts.weights.bold};
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        maxHeight: '100%',
+        color: theme.colors.primary,
+        minWidth: 200,
+        alignItems: 'center',
+    },
+    h1: {
+        textAlign: 'center',
+        color: theme.colors.white,
+        fontFamily: theme.fonts.family.stylish,
+        fontWeight: "700",
+        fontSize: theme.fonts.size.P5,
+    },
+    h2: {
+        textAlign: 'center',
+        color: theme.colors.white,
+        fontFamily: theme.fonts.family.stylish,
+        fontWeight: "700",
+        fontSize: theme.fonts.size.P4,
+    },
+    hr: {
+        borderBottomWidth: 2,
+        borderStyle: "solid",
+        borderColor: theme.colors.loginLine,
+        marginVertical: theme.gridUnit * 5
     }
+})
 
-    h1 {
-        font-size: ${theme.fonts.size.P5};
-    }
+// const WelcomeStyled = styled.div`
+//     h1, h2 {
+//         color: ${theme.colors.white};
+//         font-weight: ${theme.fonts.weights.bold};
+//     }
 
-    h2 {
-        font-size: ${theme.fonts.size.P4};
-        margin: 20px 10px 10px;
-    }
+//     h1 {
+//         font-size: ${theme.fonts.size.P5};
+//     }
 
-    hr {
-        border: 1.5px solid ${theme.colors.loginLine};
-        margin-bottom: ${theme.gridUnit * 5}px;
-    }
-`;
+//     h2 {
+//         font-size: ${theme.fonts.size.P4};
+//         margin: 20px 10px 10px;
+//     }
+
+//     hr {
+// border: 1.5px solid ${theme.colors.loginLine};
+// margin-bottom: ${theme.gridUnit * 5}px;
+//     }
+// `

@@ -1,18 +1,44 @@
+import { theme } from "../../../theme"
 import Logo from "../../shared/Logo"
 import LoginForm from "./LoginForm"
-// import styled from 'styled-components';
 // import { fadeInAnimation } from "../../../theme/animations"
-// import { theme } from "../../../theme"
-import { View } from "react-native"
+import { ImageBackground, StyleSheet, View } from "react-native"
 
 export default function LoginPage() {
     return (
-        <View>
+        <View style={styles.container}>
+            <ImageBackground source={require('../../../res/images/burger-background.jpg')} resizeMode="cover" style={styles.img}></ImageBackground>
             <Logo className={"logo-login-page"} />
-            {/* <LoginForm /> */}
+            <LoginForm />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        color: theme.colors.primary,
+        alignItems: 'center',
+        // backgroud: `url("") center center / cover #000000b2`,
+    },
+    img: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        opacity: 0.5,
+        // backgroundBlendMode: 'darken',
+        // backgroundColor: '#000000b2',
+        inset: 0
+
+        // flex: 1,
+        // justifyContent: 'center',
+    }
+})
 
 // const LoginPageStyled = styled.div`
 
