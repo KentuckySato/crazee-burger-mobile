@@ -1,16 +1,10 @@
 import React, { useRef, useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
-// import styled from "styled-components"
-// import { theme } from '../../../theme'
 import InputText from '../../shared/InputText'
-// import { BsChevronRight, BsPersonCircle } from "react-icons/bs"
-// import Button from '../../shared/Button'
 // import { authenticateUser } from '../../../api/user'
 import Welcome from './Welcome'
 import { ScrollView, Button, TextInput, StyleSheet, View, Alert } from 'react-native'
 import { theme } from '../../../theme'
-// import { Alert, Button, StyleSheet, View } from 'react-native';
-// import {Alert, Button, StyleSheet, View} from 'react-native';
 
 export default function LoginForm() {
     // State
@@ -72,8 +66,12 @@ const styles = StyleSheet.create({
         marginVertical: 0,
         marginHorizontal: 'auto',
         borderRadius: 10,
+        // fontSize: theme.fonts.size.XS,
     },
     input: {
+        display: 'flex',
+        // alignSelf: 'center',
+        // width: '100%',
         height: 40,
         color: theme.colors.dark,
         backgroundColor: theme.colors.white,
@@ -84,15 +82,13 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     button: {
-        width: '100%',
-        fontSize: theme.fonts.size.SM,
+        display: 'flex',
+        fontSize: theme.fonts.size.XS,
         paddingVertical: 3,
         paddingHorizontal: 15,
         backgroundColor: theme.colors.primary,
         borderRadius: 15,
         textAlign: 'center',
-        alignSelf: 'center',
-        lineHeight: 18,
     }
 })
 
