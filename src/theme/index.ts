@@ -31,17 +31,17 @@ const spacing = {
 
 const fonts = {
   size: {
-    XXXS: 8,
-    XXS: 10,
-    XS: 12,
-    SM: 15,
-    P0: 16,
-    P1: 18,
-    P2: 20,
-    P3: 24,
-    P4: 36,
-    P5: 48,
-    P6: 60,
+    XXXS: '8px',
+    XXS: '10px',
+    XS: '12px',
+    SM: '15px',
+    P0: '16px',
+    P1: '18px',
+    P2: '20px',
+    P3: '24px',
+    P4: '36px',
+    P5: '48px',
+    P6: '60px',
   },
   weights: {
     light: 300,

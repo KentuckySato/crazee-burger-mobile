@@ -1,5 +1,5 @@
-import Button from "../../../../../../../shared/Button";
-import SubmitMessage from "./SubmitMessage";
+import Button from "../../../../../../../shared/@Button"
+import SubmitMessage from "./SubmitMessage"
 
 type SubmitButtonProps = {
     isSubmitted: boolean

@@ -1,6 +1,6 @@
-import { styled } from "styled-components";
-import Button from "../../../../../shared/Button";
-import { theme } from "../../../../../../theme";
+import { styled } from "styled-components"
+import Button from "../../../../../shared/@Button"
+import { theme } from "../../../../../../theme"
 
 export default function EmptyMenuAdmin({ onReset }: { onReset: () => void }) {
     return (
