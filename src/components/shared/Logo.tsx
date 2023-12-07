@@ -29,7 +29,7 @@ const LogoStyled = styled.View`
 
 const ImageStyled = styled.Image`
     object-fit: contain;
-    object-position: center center;
+    /* object-position: center center; */
     height: 60px;
     width: 80px;
     margin: 0px 5px;

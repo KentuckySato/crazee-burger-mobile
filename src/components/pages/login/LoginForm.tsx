@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import InputText from '../../shared/InputText'
 // import { authenticateUser } from '../../../api/user'
 import Welcome from './Welcome'
-import { Button, TextInput, StyleSheet, View, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { TextInput, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { theme } from '../../../theme'
 import styled from 'styled-components/native'
 
@@ -59,7 +59,6 @@ export default function LoginForm() {
                     /> */}
 
                     <TextInputStyled
-                        autoFocus={true}
                         placeholder="Entrez votre prénom"
                         placeholderTextColor={theme.colors.greyDark}
                         onChangeText={newUsername => handleChange(newUsername)}
@@ -67,12 +66,18 @@ export default function LoginForm() {
                         defaultValue={username}
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
-                    // style={styles.input}
                     />
 
-                    <ButtonContainerStyled>
-                        <ButtonStyled color={theme.colors.white} title='Accéder à mon espace' onPress={handleSubmit} />
+                    <ButtonContainerStyled onPress={handleSubmit} style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? theme.colors.white : theme.colors.primary,
+                        },
+                    ]}>
+                        {({ pressed }) => (
+                            <ButtonText style={{ color: pressed ? theme.colors.primary : theme.colors.white }}>Accéder à mon espace</ButtonText>
+                        )}
                     </ButtonContainerStyled>
+
 
                 </LoginFormStyled>
             </TouchableWithoutFeedback>
@@ -83,13 +88,9 @@ export default function LoginForm() {
 const LoginFormStyled = styled.View`
     text-align: center;
     font-family: "Amatic SC";
-    /* max-width: 500px;
-    min-width: 400px; */
     margin: 0 auto;
-    padding: 2.5rem ${theme.spacing.lg};
     border-radius: ${theme.borderRadius.round};
     font-size: ${theme.fonts.size.XS};
-
 `
 
 const TextInputStyled = styled(TextInput)`
@@ -97,21 +98,23 @@ const TextInputStyled = styled(TextInput)`
     color: ${theme.colors.dark};
     background-color: ${theme.colors.white};
     margin: 18px 0px;
-    padding: 0px 10px;
+    padding: 0px 15px;
     border-width: 1px;
     border-color: white;
     border-radius: 15px;
-    font-size: ${theme.fonts.size.XS};
+    font-size: ${theme.fonts.size.P0};
 `
 
-const ButtonContainerStyled = styled.View`
+const ButtonContainerStyled = styled.Pressable`
     width: 100%;
-    background-color: ${theme.colors.primary};
     border-radius: ${theme.borderRadius.extraRound};
-    font-size: ${theme.fonts.size.XS};
 `
-const ButtonStyled = styled.Button`
+const ButtonText = styled.Text`
     width: 100%;
-    color: ${theme.colors.red};
-    font-size: ${theme.fonts.size.XS};
+    padding: 10px 15px;
+    color: ${theme.colors.primary};
+    text-align: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.P0};
+    font-weight: bold;
 `

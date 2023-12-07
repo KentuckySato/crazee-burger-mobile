@@ -9,7 +9,6 @@ export default function LoginPage() {
         <LoginPageStyled>
             <ImageBackground imageStyle={{
                 resizeMode: "cover",
-                opacity: 0.5,
                 objectFit: "contain",
             }} style={{
                 position: 'absolute',
