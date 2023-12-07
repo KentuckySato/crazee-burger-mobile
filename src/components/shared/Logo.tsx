@@ -20,7 +20,7 @@ export default function Logo({ className, onClick }: LogoProps) {
 const LogoStyled = styled.View`
     display: flex;
     flex-direction: row;
-    max-height: 100%;
+    max-height: "100%";
     min-width: 200px;
     align-items: center;
     transform: scale(1.5);

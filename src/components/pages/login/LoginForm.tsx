@@ -110,11 +110,11 @@ const TextInputStyled = styled(TextInput)`
 `
 
 const ButtonContainerStyled = styled.Pressable`
-    width: 100%;
+    width: "100%";
     border-radius: ${theme.borderRadius.extraRound};
 `
 const ButtonText = styled.Text`
-    width: 100%;
+    width: "100%";
     padding: 10px 15px;
     color: ${theme.colors.primary};
     text-align: center;
