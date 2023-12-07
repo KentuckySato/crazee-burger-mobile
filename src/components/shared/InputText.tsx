@@ -1,4 +1,4 @@
-import styled, { RuleSet, css } from 'styled-components'
+import styled, { css } from 'styled-components/native'
 import { theme } from '../../theme'
 import { ForwardedRef, forwardRef } from 'react'
 import { ProductId } from '../../enums/product'

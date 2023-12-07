@@ -25,7 +25,10 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
-import LoginPage from './components/pages/login/LoginPage'
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import LoginScreen from './components/pages/login/LoginScreen'
+import OrderPage from './components/pages/order/OrderPage'
 
 type SectionProps = PropsWithChildren<{
     title: string
@@ -57,6 +60,8 @@ type SectionProps = PropsWithChildren<{
 //     )
 // }
 
+const Stack = createNativeStackNavigator()
+
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark'
 
@@ -65,15 +70,18 @@ function App(): JSX.Element {
     }
 
     return (
-
-        <SafeAreaView style={backgroundStyle}>
-            <NavigationContainer>
-                <StatusBar
-                    barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                    backgroundColor={backgroundStyle.backgroundColor}
-                />
-                <LoginPage />
-                {/* <ScrollView
+        <NavigationContainer>
+            {/* <SafeAreaView style={backgroundStyle}> */}
+            <StatusBar
+                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+                backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <Stack.Navigator initialRouteName='Login'>
+                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Order" component={OrderPage} />
+            </Stack.Navigator>
+            {/* <LoginScreen /> */}
+            {/* <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     style={backgroundStyle}>
                     <Header />
@@ -97,8 +105,8 @@ function App(): JSX.Element {
                         <LearnMoreLinks />
                     </View>
                 </ScrollView> */}
-            </NavigationContainer>
-        </SafeAreaView>
+            {/* </SafeAreaView> */}
+        </NavigationContainer>
     )
 }
 

@@ -36,11 +36,11 @@ const ImageStyled = styled.Image`
 `
 
 const TextStyled = styled.Text`
-    display: inline;
+    /* display: inline; */
     text-align: center;
     color: ${theme.colors.primary};
     font-size: ${theme.fonts.size.P4};
-    line-height: 1em;
+    line-height: 1px;
     font-weight: ${theme.fonts.weights.bold};
     text-transform: uppercase;
     letter-spacing: 1.5px;

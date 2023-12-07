@@ -6,12 +6,14 @@ import Welcome from './Welcome'
 import { TextInput, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { theme } from '../../../theme'
 import styled from 'styled-components/native'
+import { NavigationProp, useNavigation } from '@react-navigation/native'
 
 export default function LoginForm() {
     // State
     const [username, setUsername] = useState('')
     const usernameFieldRef = useRef<HTMLInputElement>(null)
     // const navigate = useNavigate()
+    const { navigate } = useNavigation()
 
     const [isInputFocused, setInputFocused] = useState(false)
 
@@ -26,11 +28,13 @@ export default function LoginForm() {
     // Effects
     const handleSubmit = async () => {
         if (!username) return
-        Alert.alert(username)
+        // Alert.alert(username)
 
         // const userReceived = await authenticateUser(username)
 
         setUsername("")
+        navigate('Order', { username: username })
+        // navigate("Order")
         // navigate(`order/${userReceived.username}`)
     }
 
