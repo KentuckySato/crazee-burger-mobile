@@ -1,21 +1,24 @@
 import styled from "styled-components/native"
 import Logo from "../../shared/Logo"
 import LoginForm from "./LoginForm"
-import { ImageBackground } from "react-native"
+import { ImageBackground, StyleProp, ViewStyle } from "react-native"
+import DarkenView from "./DarkenView"
 
 export default function LoginScreen() {
+    const IMG_BACKGROUND = require('../../../res/images/burger-background.jpeg')
+    const imageStyle: StyleProp<ViewStyle> = {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+    }
+
     return (
         <LoginScreenStyled style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <ImageBackground imageStyle={{
-                resizeMode: "cover",
-                objectFit: "contain",
-            }} style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                zIndex: -1,
-            }} source={require('../../../res/images/burger-background.jpg')} resizeMode="cover"></ImageBackground>
-            <Logo className={"logo-login-page"} />
+            <ImageBackground style={imageStyle} source={IMG_BACKGROUND} resizeMode="cover">
+                <DarkenView />
+            </ImageBackground>
+            <Logo />
             <LoginForm />
         </LoginScreenStyled>
     )
