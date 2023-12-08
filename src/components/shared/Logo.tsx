@@ -1,17 +1,12 @@
 import styled from 'styled-components/native'
 import { theme } from '../../theme/index'
-import { Image, StyleSheet, Text, View } from 'react-native'
 
-type LogoProps = {
-    className?: string,
-    onClick?: React.MouseEventHandler<HTMLDivElement>
-}
-
-export default function Logo({ className, onClick }: LogoProps) {
+export default function Logo() {
+    const IMG_LOGO = require('../../res/images/logo-burger.png')
     return (
         <LogoStyled>
             <TextStyled>Crazee</TextStyled>
-            <ImageStyled source={require('../../res/images/logo-burger.png')} />
+            <ImageStyled source={IMG_LOGO} />
             <TextStyled>Burger</TextStyled>
         </LogoStyled>
     )
@@ -20,7 +15,7 @@ export default function Logo({ className, onClick }: LogoProps) {
 const LogoStyled = styled.View`
     display: flex;
     flex-direction: row;
-    max-height: "100%";
+    max-height: 100%;
     min-width: 200px;
     align-items: center;
     transform: scale(1.5);
@@ -29,18 +24,15 @@ const LogoStyled = styled.View`
 
 const ImageStyled = styled.Image`
     object-fit: contain;
-    /* object-position: center center; */
     height: 60px;
-    width: 80px;
-    margin: 0px 5px;
+    width: 70px;
+    margin: 0px 3px;
 `
 
 const TextStyled = styled.Text`
-    /* display: inline; */
     text-align: center;
     color: ${theme.colors.primary};
-    font-size: ${theme.fonts.size.P4};
-    line-height: 1px;
+    font-size: 46px;
     font-weight: ${theme.fonts.weights.bold};
     text-transform: uppercase;
     letter-spacing: 1.5px;

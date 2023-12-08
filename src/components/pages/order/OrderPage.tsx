@@ -98,7 +98,7 @@ export default function OrderPage() {
 }
 
 const OrderPageStyled = styled.View`
-    height: "100%";
+    height: 100%;
     display: flex;
     justify-content: center;
     /* align-items: center; */
@@ -114,7 +114,7 @@ const Container = styled.View`
     border-radius: ${theme.borderRadius.extraRound};
     display: flex;
     flex-direction: column;
-    height: "95%";
+    height: 95%;
     width: 1400px;
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px; */
 `

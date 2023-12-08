@@ -1,12 +1,9 @@
 import React, { useRef, useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
-import InputText from '../../shared/InputText'
-// import { authenticateUser } from '../../../api/user'
 import Welcome from './Welcome'
-import { TextInput, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { theme } from '../../../theme'
 import styled from 'styled-components/native'
-import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 export default function LoginForm() {
     // State
@@ -28,14 +25,11 @@ export default function LoginForm() {
     // Effects
     const handleSubmit = async () => {
         if (!username) return
-        // Alert.alert(username)
 
         // const userReceived = await authenticateUser(username)
 
         setUsername("")
         navigate('Order', { username: username })
-        // navigate("Order")
-        // navigate(`order/${userReceived.username}`)
     }
 
     const handleChange = (newUsername: string) => setUsername(newUsername)
@@ -45,23 +39,11 @@ export default function LoginForm() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
             pointerEvents='box-none'
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 200 : 20}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 20}
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <LoginFormStyled>
                     <Welcome />
-                    {/* <InputText
-                        leftIcon={<BsPersonCircle />}
-                        name="firstname"
-                        placeholder="Entrez votre prénom"
-                        value={username}
-                        required={true}
-                        onChange={handleChange}
-                        className='input-login'
-                        ref={usernameFieldRef}
-                        autoFocus={true}
-                    /> */}
-
                     <TextInputStyled
                         placeholder="Entrez votre prénom"
                         placeholderTextColor={theme.colors.greyDark}
@@ -78,11 +60,9 @@ export default function LoginForm() {
                         },
                     ]}>
                         {({ pressed }) => (
-                            <ButtonText style={{ color: pressed ? theme.colors.primary : theme.colors.white }}>Accéder à mon espace</ButtonText>
+                            <ButtonTextStyled style={{ color: pressed ? theme.colors.primary : theme.colors.white }}>Accéder à mon espace</ButtonTextStyled>
                         )}
                     </ButtonContainerStyled>
-
-
                 </LoginFormStyled>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -90,6 +70,11 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.View`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 0px 60px;
     text-align: center;
     font-family: "Amatic SC";
     margin: 0 auto;
@@ -113,8 +98,8 @@ const ButtonContainerStyled = styled.Pressable`
     width: "100%";
     border-radius: ${theme.borderRadius.extraRound};
 `
-const ButtonText = styled.Text`
-    width: "100%";
+const ButtonTextStyled = styled.Text`
+    width: 100%;
     padding: 10px 15px;
     color: ${theme.colors.primary};
     text-align: center;

@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native"
 import { theme } from "../../../theme"
 import styled from "styled-components/native"
 
@@ -22,13 +21,12 @@ const WelcomeStyled = styled.View`
 const H1Styled = styled.Text`
     text-align: center;
     font-family: ${theme.fonts.family.stylish};
-    font-size: ${theme.fonts.size.P5};
+    font-size: 40px;
     font-weight: ${theme.fonts.weights.bold};
     color: ${theme.colors.white};
 `
 const H2Styled = styled.Text`
     text-align: center;
-    margin: 20px 10px 10px;
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.bold};
@@ -36,6 +34,10 @@ const H2Styled = styled.Text`
 `
 const Separator = styled.View`
     border: 1.5px solid ${theme.colors.loginLine};
-    margin-top: ${theme.gridUnit * 5}px;
+    margin-top: ${theme.gridUnit}px;
     margin-bottom: ${theme.gridUnit * 5}px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
 `
