@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone, findIndexById, removeObjectById } from "../utils/array";
-import { Product, ProductId, Products } from "../enums/product";
-import { syncBothMenu } from "../api/product";
+import { useState } from "react"
+import { fakeMenu } from "../fakeData/fakeMenu"
+import { deepClone, findIndexById, removeObjectById } from "../utils/array"
+import { Product, ProductId, Products } from "../enums/product"
+import { syncBothMenu } from "../api/product"
 
 export const useMenu = () => {
-    const [menu, setMenu] = useState<Products>();
+    const [menu, setMenu] = useState<Products>(fakeMenu.LARGE)
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddMenuProduct = (newProduct: Product, username: string) => {
-        const menuCopy = deepClone(menu);
+        const menuCopy = deepClone(menu)
         let menuUpdated: Products
 
         if (menuCopy)
-            menuUpdated = [newProduct, ...menuCopy];
+            menuUpdated = [newProduct, ...menuCopy]
 
         setMenu(menuUpdated)
         syncBothMenu(username, menuUpdated)
@@ -21,7 +21,7 @@ export const useMenu = () => {
 
     const handleDeleteMenuProduct = (idOfProductToDelete: ProductId, username: string) => {
         // We need to copy the menu to avoid mutation
-        const menuCopy = deepClone(menu);
+        const menuCopy = deepClone(menu)
 
         // filter the item to delete
         const menuUpdated = removeObjectById(idOfProductToDelete, menuCopy)

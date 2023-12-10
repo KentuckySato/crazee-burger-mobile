@@ -1,18 +1,19 @@
-import { styled } from "styled-components"
-import Button from "../../../../../shared/@Button"
+import { styled } from "styled-components/native"
+// import Button from "../../../../../shared/@Button"
 import { theme } from "../../../../../../theme"
+import { Text } from "react-native"
 
 export default function EmptyMenuAdmin({ onReset }: { onReset: () => void }) {
     return (
         <EmptyMenuAdminStyled>
-            <span className="title">Le menu est vide ?</span>
-            <span className="description">Cliquez ci-dessous pour le réinitialiser</span>
-            <Button label={"Générer de nouveaux produits"} onClick={onReset} type="button" />
+            <Text>Le menu est vide ?</Text>
+            <Text>Cliquez ci-dessous pour le réinitialiser</Text>
+            {/* <Button label={"Générer de nouveaux produits"} onClick={onReset} type="button" /> */}
         </EmptyMenuAdminStyled>
     )
 }
 
-const EmptyMenuAdminStyled = styled.div`
+const EmptyMenuAdminStyled = styled.View`
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     border-bottom-right-radius: ${theme.borderRadius.extraRound};

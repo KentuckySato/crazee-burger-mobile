@@ -1,12 +1,12 @@
-import { CSSTransition } from "react-transition-group"
-import { css } from "styled-components"
+// import { CSSTransition } from "react-transition-group"
+import { css } from "styled-components/native"
 import Ribbon from "../../../../../shared/Ribbon"
 
 export default function RibbonAnimated() {
     return (
-        <CSSTransition in={true} timeout={500} appear={true} classNames="ribbon-animation">
-            <Ribbon className="ribbon" label="nouveau" />
-        </CSSTransition>
+        // <CSSTransition in={true} timeout={500} appear={true} classNames="ribbon-animation">
+        <Ribbon className="ribbon" label="nouveau" />
+        // </CSSTransition>
     )
 }
 

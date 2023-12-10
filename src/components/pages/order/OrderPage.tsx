@@ -14,6 +14,8 @@ import { initializeUserSession } from "./helpers/initializeUserSession"
 import { DEFAULT_USERNAME } from "../../../enums/user"
 import { SafeAreaView, Text, View } from "react-native"
 import { useRoute } from "@react-navigation/native"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Menu from "./Main/MainRightSide/Menu/Menu"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -22,6 +24,7 @@ export default function OrderPage() {
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const { params } = useRoute()
+    const Tab = createBottomTabNavigator()
 
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
@@ -88,6 +91,12 @@ export default function OrderPage() {
                 <OrderPageStyled>
                     <Container>
                         <Text>Hey, {username}</Text>
+                        <Tab.Navigator screenOptions={{
+                            headerShown: false,
+                        }}>
+                            <Tab.Screen name="Menu" component={Menu} />
+                            <Tab.Screen name="Basket" component={() => <View><Text>My Basket</Text></View>} />
+                        </Tab.Navigator>
                         {/* <Navbar /> */}
                         {/* <Main /> */}
                     </Container>
@@ -110,11 +119,6 @@ const OrderPageStyled = styled.View`
 `
 
 const Container = styled.View`
-    position: relative;
-    border-radius: ${theme.borderRadius.extraRound};
-    display: flex;
-    flex-direction: column;
-    height: 95%;
-    width: 1400px;
-    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px 0px; */
+    flex: 1;
+    height: 100%;
 `

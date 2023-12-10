@@ -1,7 +1,7 @@
-import { styled } from "styled-components"
+import { useContext } from "react"
+import { styled } from "styled-components/native"
 import Card from "../../../../../shared/Card"
 import { theme } from "../../../../../../theme"
-import { useContext } from "react"
 import { formatPrice } from "../../../../../../utils/maths"
 import { OrderContext } from "../../../../../../context/OrderContext"
 import EmptyMenuAdmin from "./EmptyMenuAdmin"
@@ -9,11 +9,8 @@ import EmptyMenuClient from "./EmptyMenuClient"
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, ProductId } from "../../../../../../enums/product"
 import { isEmpty } from "../../../../../../utils/array"
 import Loader from "./Loader"
-import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { menuAnimation } from "../../../../../../theme/animations"
 import { convertStringToBoolean } from "../../../../../../utils/string"
-import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated"
-import { isMobile } from "react-device-detect"
+import { ActivityIndicator, FlatList, Platform, View } from "react-native"
 
 export default function Menu() {
     const {
@@ -29,8 +26,6 @@ export default function Menu() {
         handleAddBasketProduct,
         handleDeleteBasketProduct
     } = useContext(OrderContext)
-
-    isMobile && console.log("isMobile", isMobile)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = (idOfProductSelected: ProductId) => {
@@ -54,8 +49,6 @@ export default function Menu() {
         handleAddBasketProduct(idProductToAdd, username)
     }
 
-    const cardContainerClassName = isModeAdmin ? "card-container is-hoverable" : "card-container"
-
     // Render
     if (menu === undefined) return <Loader />
 
@@ -65,78 +58,37 @@ export default function Menu() {
     }
 
     return (
-        <MenuStyled className="menu">
-            <TransitionGroup component={null} >
-                {
-                    menu.map(({ id, title, price, imageSource, isAvailable, isPublicised }) =>
-                        <CSSTransition key={id} classNames={"menu-animation"} timeout={300}>
-                            <div className={cardContainerClassName}>
-                                {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
-                                <Card
-                                    id={id}
-                                    title={title}
-                                    imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                                    leftDescription={formatPrice(price)}
-                                    isHoverable={isModeAdmin}
-                                    isSelected={productSelected.id === id && isModeAdmin}
-                                    hasDeleteButton={isModeAdmin}
-                                    onDelete={(event) => handleCardDelete(event, id)}
-                                    onSelect={() => handleOnSelect(id)}
-                                    onAdd={(event) => handleAddButton(event, id)}
-                                    overlapImageSource={IMAGE_OUT_OF_STOCK}
-                                    isOverlapImageVisible={!convertStringToBoolean(isAvailable)}
-                                />
-                            </div>
-                        </CSSTransition>
-                    )
+        <MenuStyled>
+            <FlatList
+                style={{ display: 'flex', flexDirection: 'column' }}
+                data={menu}
+                // ItemSeparatorComponent={
+                //     <View style={{ height: 1, backgroundColor: theme.colors.red }} />
+                // }
+                renderItem={({ item }) =>
+                    <Card
+                        id={item.id}
+                        title={item.title}
+                        imageSource={item.imageSource ? item.imageSource : IMAGE_BY_DEFAULT}
+                        leftDescription={formatPrice(item.price)}
+                        isHoverable={isModeAdmin}
+                        isSelected={productSelected.id === item.id && isModeAdmin}
+                        hasDeleteButton={isModeAdmin}
+                        onDelete={(event) => handleCardDelete(event, item.id)}
+                        onSelect={() => handleOnSelect(item.id)}
+                        onAdd={(event) => handleAddButton(event, item.id)}
+                        overlapImageSource={IMAGE_OUT_OF_STOCK}
+                        isOverlapImageVisible={!convertStringToBoolean(item.isAvailable)}
+                    />
                 }
-            </TransitionGroup>
+            />
         </MenuStyled >
     )
 }
 
-const MenuStyled = styled.div`
-    background-color: ${theme.colors.background_white};
-    flex: 1 1 0%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-row-gap: 60px;
-    padding: 50px 50px 150px;
-    justify-items: center;
-    box-shadow: #0003 0px 8px 20px 8px inset;
-    overflow: auto;
-
-    .card-container {
-        position:relative;
-        height: 330px;
-        border-radius: ${theme.borderRadius.extraRound};
-
-        &.is-hoverable {
-            &:hover {
-                transform: scale(1.05);
-                transition: ease-in-out 0.4s;
-            }
-        }
-    }
-
-    .ribbon {
-        z-index: 2;
-        cursor: pointer;
-    }
-
-    @media(max-width: 768px) {
-        padding: 50px 50px;
-
-        grid-template-columns: repeat(1, 1fr);
-        grid-row-gap: 10px;
-
-        .card-container {
-            width: 100%;
-            height: 120px;
-        }
-    }
-
-    ${menuAnimation}
-    ${ribbonAnimation}
+const MenuStyled = styled.View`
+    flex: 1;
+    /* background-color: ${theme.colors.green}; */
+    /* padding: 10px 10px; */
+    /* justify-items: center; */
 `

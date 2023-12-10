@@ -1,33 +1,5 @@
-import {css, keyframes} from 'styled-components';
+import {css} from 'styled-components/native';
 import {theme} from '.';
-
-export const fadeInFromRight = keyframes`
-    0% {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-        transform: translateX(100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-`;
-
-export const fadeInFromTop = keyframes`
-    0% {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-        transform: translateY(-40%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
 
 export const adminAnimation = css`
   .admin-appear {
@@ -134,14 +106,4 @@ export const menuAnimation = css`
       transition: ${theme.animations.speed.fast} ease-out;
     }
   }
-`;
-
-export const fadeInAnimation = keyframes`
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 `;

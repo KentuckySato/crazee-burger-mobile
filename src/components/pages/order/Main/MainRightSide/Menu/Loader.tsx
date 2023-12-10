@@ -1,17 +1,18 @@
-import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import styled from "styled-components/native"
+import { theme } from "../../../../../../theme"
+import { Text } from "react-native"
 
 export default function Loader() {
     return (
         <LoaderStyled>
-            <span className="title">Chargement en cours...</span>
+            <Text>Chargement en cours...</Text>
         </LoaderStyled>
     )
 }
 
-const LoaderStyled = styled.div`
+const LoaderStyled = styled.View`
     background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.strong};
+    /* box-shadow: ${theme.shadows.strong}; */
     border-bottom-right-radius: ${theme.borderRadius.extraRound};
     display: flex;
     flex-direction: column;
@@ -24,4 +25,4 @@ const LoaderStyled = styled.div`
         font-size: ${theme.fonts.size.P4};
         font-weight: ${theme.fonts.weights.regular};
     }
-`;
+`

@@ -1,5 +1,5 @@
-import styled, { RuleSet, css } from 'styled-components';
-import { theme } from '../../theme';
+import styled, { css } from 'styled-components/native'
+import { theme } from '../../theme'
 
 type Props = {
     label: string
@@ -26,7 +26,7 @@ export default function Button({
     version = 'primary',
 }: Props) {
     return (
-        <ButtonStyled
+        <View
             className={className}
             type={type}
             onClick={onClick}
@@ -41,13 +41,9 @@ export default function Button({
             {rightIcon &&
                 <div className='icon'>{rightIcon}</div>
             }
-        </ButtonStyled>
+        </View>
     )
 }
-
-const ButtonStyled = styled.button<Custom>`
-    ${({ version }) => extraStyle[version]}
-`;
 
 const extraStylePrimary = css`
     width: 100%;
@@ -99,31 +95,3 @@ const extraStylePrimary = css`
         margin-left: 10px;
     }
 `
-
-const extraStyleSuccess = css`
-    border-radius: ${theme.borderRadius.round};
-    border: 1px solid ${theme.colors.success};
-    padding: 0px 1.5em;
-    color: ${theme.colors.white};
-    background: ${theme.colors.success};
-    font-size: ${theme.fonts.size.XS};
-    font-weight: ${theme.fonts.weights.semiBold};
-    height: 35px;
-
-    &:hover {
-        cursor: pointer;
-        color: ${theme.colors.success};
-        background-color: ${theme.colors.white};
-    }
-
-    &:active {
-        color: ${theme.colors.white};
-        background: ${theme.colors.success};
-        border: 1px solid ${theme.colors.success};
-    }
-`
-
-const extraStyle: { [key: string]: RuleSet<object> } = {
-    primary: extraStylePrimary,
-    success: extraStyleSuccess
-}

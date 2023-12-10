@@ -1,17 +1,18 @@
-import { styled } from "styled-components"
+import { styled } from "styled-components/native"
 import { theme } from "../../../../../../theme"
+import { Text } from "react-native"
 
 export default function EmptyMenuClient() {
     return (
         <EmptyMenuClientStyled>
-            <span className="title">Victime de notre succès ! :D</span>
-            <span className="description">De nouvelles recettes sont en cours de préparation.</span>
-            <span className="description">À très vite !</span>
+            <Text>Victime de notre succès ! :D</Text>
+            <Text>De nouvelles recettes sont en cours de préparation.</Text>
+            <Text>À très vite !</Text>
         </EmptyMenuClientStyled>
     )
 }
 
-const EmptyMenuClientStyled = styled.div`
+const EmptyMenuClientStyled = styled.View`
     background-color: ${theme.colors.background_white};
     box-shadow: ${theme.shadows.strong};
     border-bottom-right-radius: ${theme.borderRadius.extraRound};

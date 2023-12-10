@@ -1,4 +1,4 @@
-import { CSSTransition, TransitionGroup } from "react-transition-group"
+// import { CSSTransition, TransitionGroup } from "react-transition-group"
 import styled from "styled-components"
 import { casinoEffect } from "../../theme/animations"
 
@@ -10,13 +10,13 @@ type CasinoEffectProps = {
 export default function CasinoEffect({ count, className }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
-            <TransitionGroup appear={true} component={null} className={"transition-group"}>
-                <CSSTransition key={count} classNames={"count-animated"} timeout={300}>
-                    <span className={className}>
-                        {count}
-                    </span>
-                </CSSTransition>
-            </TransitionGroup>
+            {/* <TransitionGroup appear={true} component={null} className={"transition-group"}> */}
+            {/* <CSSTransition key={count} classNames={"count-animated"} timeout={300}> */}
+            <span className={className}>
+                {count}
+            </span>
+            {/* </CSSTransition> */}
+            {/* </TransitionGroup> */}
         </CasinoEffectStyled>
     )
 }

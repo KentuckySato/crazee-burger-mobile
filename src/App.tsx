@@ -40,23 +40,17 @@ function App(): JSX.Element {
         flex: 1,
     }
 
-    const stackScreenOptions = {
-        headerShown: false,
-    }
-
     return (
         <NavigationContainer>
-            {/* <SafeAreaView style={backgroundStyle}> */}
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
 
             <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen options={stackScreenOptions} name="Login" component={LoginScreen} />
-                <Stack.Screen options={stackScreenOptions} name="Order" component={OrderPage} />
+                <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+                <Stack.Screen options={{ title: 'Crazee Burger', headerBackVisible: false }} name="Order" component={OrderPage} />
             </Stack.Navigator>
-            {/* </SafeAreaView> */}
         </NavigationContainer>
     )
 }
