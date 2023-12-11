@@ -96,6 +96,7 @@ export default function OrderPage() {
                         }}>
                             <Tab.Screen name="Menu" component={Menu} />
                             <Tab.Screen name="Basket" component={() => <View><Text>My Basket</Text></View>} />
+                            <Tab.Screen name="Profile" component={() => <View><Text>Profile</Text></View>} />
                         </Tab.Navigator>
                         {/* <Navbar /> */}
                         {/* <Main /> */}

@@ -64,7 +64,7 @@ const CardContainer = styled.View`
     flex-direction: row;
     align-items: center;
     padding: 10px 10px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     justify-content: space-between;
     width: auto;
 `
@@ -72,7 +72,6 @@ const CardInfo = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 `
 
 const ImageContainer = styled.View`
@@ -80,7 +79,7 @@ const ImageContainer = styled.View`
     justify-content: center;
     align-items: flex-end;
     align-self: flex-end;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 `
 
 const CardTitle = styled.Text`
@@ -94,9 +93,6 @@ const CardDescription = styled.View`
     font-weight: ${theme.fonts.weights.bold};
 `
 const LeftDescription = styled.Text`
-    /* font-family: "Amatic SC";
-    font-size: ${theme.fonts.size.P4};
-    font-weight: ${theme.fonts.weights.bold}; */
     text-overflow: ellipsis;
     font-weight: ${theme.fonts.weights.medium};
     color: ${theme.colors.primary};
