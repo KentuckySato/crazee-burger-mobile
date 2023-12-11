@@ -1,5 +1,3 @@
-import Navbar from "./Navbar/Navbar"
-import Main from "./Main/Main"
 import { styled } from "styled-components/native"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
@@ -12,10 +10,9 @@ import { findObjectById } from "../../../utils/array"
 // import { useParams } from "react-router-dom"
 import { initializeUserSession } from "./helpers/initializeUserSession"
 import { DEFAULT_USERNAME } from "../../../enums/user"
-import { SafeAreaView, Text, View } from "react-native"
+import { SafeAreaView } from "react-native"
 import { useRoute } from "@react-navigation/native"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Menu from "./Main/MainRightSide/Menu/Menu"
+import BottomTab from "./BottomTab/BottomTab"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -24,7 +21,6 @@ export default function OrderPage() {
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const { params } = useRoute()
-    const Tab = createBottomTabNavigator()
 
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
@@ -90,16 +86,7 @@ export default function OrderPage() {
             <SafeAreaView>
                 <OrderPageStyled>
                     <Container>
-                        <Text>Hey, {username}</Text>
-                        <Tab.Navigator screenOptions={{
-                            headerShown: false,
-                        }}>
-                            <Tab.Screen name="Menu" component={Menu} />
-                            <Tab.Screen name="Basket" component={() => <View><Text>My Basket</Text></View>} />
-                            <Tab.Screen name="Profile" component={() => <View><Text>Profile</Text></View>} />
-                        </Tab.Navigator>
-                        {/* <Navbar /> */}
-                        {/* <Main /> */}
+                        <BottomTab />
                     </Container>
                 </OrderPageStyled>
             </SafeAreaView>
