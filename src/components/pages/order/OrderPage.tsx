@@ -83,27 +83,26 @@ export default function OrderPage() {
 
     return (
         <OrderContext.Provider value={orderContextValue}>
-            <SafeAreaView>
+            <SafeAreaViewStyled>
                 <OrderPageStyled>
                     <Container>
                         <BottomTab />
                     </Container>
                 </OrderPageStyled>
-            </SafeAreaView>
+            </SafeAreaViewStyled>
         </OrderContext.Provider>
     )
 }
+
+const SafeAreaViewStyled = styled.SafeAreaView`
+    background-color: ${theme.colors.primary};
+`
 
 const OrderPageStyled = styled.View`
     height: 100%;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 
-    background-color: ${theme.colors.background_main};
-    background-image: url("/images/pattern-burger.png");
-    background-size: 200px 150px;
-    background-repeat: repeat;
 `
 
 const Container = styled.View`

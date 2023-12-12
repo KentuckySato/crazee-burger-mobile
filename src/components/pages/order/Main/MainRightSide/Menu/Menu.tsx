@@ -60,10 +60,11 @@ export default function Menu() {
     const renderSeparator = useCallback(() => {
         return <View
             style={{
-                borderBottomColor: '#e1e8ee',
+                borderBottomColor: theme.colors.greyBlue,
                 borderBottomWidth: 1,
                 alignSelf: 'center',
-                width: '100%',
+                width: '90%',
+                opacity: 0.2,
             }}
         />
     }, [])
