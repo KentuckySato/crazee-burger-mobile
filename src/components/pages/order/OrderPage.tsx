@@ -1,7 +1,7 @@
 import { styled } from "styled-components/native"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Product, ProductId } from "../../../enums/product"
 import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
@@ -10,9 +10,8 @@ import { findObjectById } from "../../../utils/array"
 // import { useParams } from "react-router-dom"
 import { initializeUserSession } from "./helpers/initializeUserSession"
 import { DEFAULT_USERNAME } from "../../../enums/user"
-import { SafeAreaView } from "react-native"
 import { useRoute } from "@react-navigation/native"
-import BottomTab from "./BottomTab/BottomTab"
+import BottomTabNavigator from "./BottomTab/BottomTabNavigator"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -86,7 +85,7 @@ export default function OrderPage() {
             <SafeAreaViewStyled>
                 <OrderPageStyled>
                     <Container>
-                        <BottomTab />
+                        <BottomTabNavigator />
                     </Container>
                 </OrderPageStyled>
             </SafeAreaViewStyled>

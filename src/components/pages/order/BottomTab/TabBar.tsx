@@ -12,7 +12,7 @@ type TabBarProps = {
 export default function TabBar({ state, descriptors, navigation }: TabBarProps) {
     return (
         <TabBarStyled>
-            {state.routes.map((route, index) => {
+            {state.routes.map((route: {}, index: number) => {
                 const { options } = descriptors[route.key]
                 const label =
                     options.tabBarLabel !== undefined
@@ -21,9 +21,11 @@ export default function TabBar({ state, descriptors, navigation }: TabBarProps) 
                             ? options.title
                             : route.name
 
+                const iconTab: Function | null = options.tabBarIcon ? options.tabBarIcon : null
+
                 const isFocused = state.index === index
 
-                const onPress = () => {
+                const handleOnPress = () => {
                     const event = navigation.emit({
                         type: 'tabPress',
                         target: route.key,
@@ -35,7 +37,7 @@ export default function TabBar({ state, descriptors, navigation }: TabBarProps) 
                     }
                 }
 
-                const onLongPress = () => {
+                const handleOnLongPress = () => {
                     navigation.emit({
                         type: 'tabLongPress',
                         target: route.key,
@@ -49,12 +51,11 @@ export default function TabBar({ state, descriptors, navigation }: TabBarProps) 
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarTestID}
-                        onPress={onPress}
-                        onLongPress={onLongPress}
+                        onPress={handleOnPress}
+                        onLongPress={handleOnLongPress}
+                        style={{ flex: 1, alignItems: 'center', top: 5 }}
                     >
-                        <Text style={{ color: isFocused ? '#673ab7' : theme.colors.white }}>
-                            {label}
-                        </Text>
+                        {iconTab && iconTab({ focused: isFocused, color: isFocused ? theme.colors.redSecondary : theme.colors.white, size: 30 })}
                     </TouchableOpacity>
                 )
             })}
@@ -69,7 +70,4 @@ const TabBarStyled = styled.View`
     justify-content: space-around;
     align-items: center;
     background-color: ${theme.colors.primary};
-    /* border: 1px solid red; */
-    /* border-top-left-radius: ${theme.borderRadius.extraRound}; */
-    /* border-top-right-radius: ${theme.borderRadius.extraRound}; */
 `
