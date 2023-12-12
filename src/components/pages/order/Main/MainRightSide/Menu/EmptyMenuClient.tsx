@@ -5,41 +5,38 @@ import { Text } from "react-native"
 export default function EmptyMenuClient() {
     return (
         <EmptyMenuClientStyled>
-            <Text>Victime de notre succès ! :D</Text>
-            <Text>De nouvelles recettes sont en cours de préparation.</Text>
-            <Text>À très vite !</Text>
+            <TitleText>Victime de notre succès ! :D</TitleText>
+            <DescriptionText>De nouvelles recettes sont en cours de préparation.</DescriptionText>
+            <DescriptionText>À très vite !</DescriptionText>
         </EmptyMenuClientStyled>
     )
 }
 
 const EmptyMenuClientStyled = styled.View`
-    background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.strong};
-    border-bottom-right-radius: ${theme.borderRadius.extraRound};
+    /* height: 100%; */
+    width: 100%;
+    padding-top: 50px;
     display: flex;
+    flex: 1;
+    background-color: ${theme.colors.background_white};
     flex-direction: column;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    align-items: center; // permet de diminuer la largeur du bouton resetMenu
+    align-items: center;
 
     position: absolute;
     inset: 0px;
+`
 
-    .title,
-    .description {
-        text-align: center;
-        font-family: "Amatic SC", cursive;
-        color: ${theme.colors.greyBlue};
-    }
-
-    .title {
-        font-size: ${theme.fonts.size.P4};
-        font-weight: ${theme.fonts.weights.semiBold};
-    }
-
-    .description {
-        font-size: ${theme.fonts.size.P4};
-        margin-top: 20px;
-    }
+const TitleText = styled.Text`
+    font-family: "Amatic SC";
+    font-size: ${theme.fonts.size.P4};
+    font-weight: ${theme.fonts.weights.semiBold};
+    text-align: center;
+    color: ${theme.colors.greyBlue};
+`
+const DescriptionText = styled.Text`
+    font-size: ${theme.fonts.size.P3};
+    font-family: "Amatic SC";
+    color: ${theme.colors.greyBlue};
+    margin-top: 20px;
 `

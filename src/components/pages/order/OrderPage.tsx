@@ -1,9 +1,7 @@
-import Navbar from "./Navbar/Navbar"
-import Main from "./Main/Main"
 import { styled } from "styled-components/native"
 import { theme } from "../../../theme"
 import { OrderContext, OrderContextType } from "../../../context/OrderContext"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Product, ProductId } from "../../../enums/product"
 import { EMPTY_PRODUCT } from "../../../enums/product"
 import { useMenu } from "../../../hooks/useMenu"
@@ -12,10 +10,8 @@ import { findObjectById } from "../../../utils/array"
 // import { useParams } from "react-router-dom"
 import { initializeUserSession } from "./helpers/initializeUserSession"
 import { DEFAULT_USERNAME } from "../../../enums/user"
-import { SafeAreaView, Text, View } from "react-native"
 import { useRoute } from "@react-navigation/native"
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Menu from "./Main/MainRightSide/Menu/Menu"
+import BottomTabNavigator from "./BottomTab/BottomTabNavigator"
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false)
@@ -24,7 +20,6 @@ export default function OrderPage() {
     const [newProduct, setNewProduct] = useState<Product>(EMPTY_PRODUCT)
     const [productSelected, setProductSelected] = useState<Product>(EMPTY_PRODUCT)
     const { params } = useRoute()
-    const Tab = createBottomTabNavigator()
 
     const titleFieldRef = useRef<HTMLInputElement>(null)
 
@@ -87,36 +82,26 @@ export default function OrderPage() {
 
     return (
         <OrderContext.Provider value={orderContextValue}>
-            <SafeAreaView>
+            <SafeAreaViewStyled>
                 <OrderPageStyled>
                     <Container>
-                        <Text>Hey, {username}</Text>
-                        <Tab.Navigator screenOptions={{
-                            headerShown: false,
-                        }}>
-                            <Tab.Screen name="Menu" component={Menu} />
-                            <Tab.Screen name="Basket" component={() => <View><Text>My Basket</Text></View>} />
-                            <Tab.Screen name="Profile" component={() => <View><Text>Profile</Text></View>} />
-                        </Tab.Navigator>
-                        {/* <Navbar /> */}
-                        {/* <Main /> */}
+                        <BottomTabNavigator />
                     </Container>
                 </OrderPageStyled>
-            </SafeAreaView>
+            </SafeAreaViewStyled>
         </OrderContext.Provider>
     )
 }
+
+const SafeAreaViewStyled = styled.SafeAreaView`
+    background-color: ${theme.colors.primary};
+`
 
 const OrderPageStyled = styled.View`
     height: 100%;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 
-    background-color: ${theme.colors.background_main};
-    background-image: url("/images/pattern-burger.png");
-    background-size: 200px 150px;
-    background-repeat: repeat;
 `
 
 const Container = styled.View`

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useId } from "react"
+import { useCallback, useContext, useId, useState } from "react"
 import { styled } from "styled-components/native"
 import Card from "../../../../../shared/Card"
 import { theme } from "../../../../../../theme"
@@ -10,7 +10,7 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, Product, ProductId
 import { isEmpty } from "../../../../../../utils/array"
 import Loader from "./Loader"
 import { convertStringToBoolean } from "../../../../../../utils/string"
-import { Animated, View } from "react-native"
+import { Animated, RefreshControl, View } from "react-native"
 
 export default function Menu() {
     const {
@@ -26,6 +26,8 @@ export default function Menu() {
         handleAddBasketProduct,
         handleDeleteBasketProduct
     } = useContext(OrderContext)
+
+    const [refreshing, setRefreshing] = useState(false)
 
     // comportement (gestionnaire d'évènement ou "event handlers")
     const handleOnSelect = (idOfProductSelected: ProductId) => {
@@ -49,21 +51,29 @@ export default function Menu() {
         handleAddBasketProduct(idProductToAdd, username)
     }
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true)
+        setTimeout(() => {
+            setRefreshing(false)
+        }, 2000)
+    }, [])
+
     // Render
     if (menu === undefined) return <Loader />
 
-    if (isEmpty(menu)) {
-        if (!isModeAdmin) return <EmptyMenuClient />
-        return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
-    }
+    // if (isEmpty(menu)) {
+    //     if (!isModeAdmin) return <EmptyMenuClient />
+    //     return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
+    // }
 
     const renderSeparator = useCallback(() => {
         return <View
             style={{
-                borderBottomColor: '#e1e8ee',
+                borderBottomColor: theme.colors.greyBlue,
                 borderBottomWidth: 1,
                 alignSelf: 'center',
-                width: '100%',
+                width: '90%',
+                opacity: 0.2,
             }}
         />
     }, [])
@@ -90,9 +100,11 @@ export default function Menu() {
             <Animated.FlatList
                 refreshing={false}
                 onRefresh={() => true}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 style={{ display: 'flex', flexDirection: 'column' }}
                 data={menu}
                 ItemSeparatorComponent={renderSeparator}
+                ListEmptyComponent={isModeAdmin ? <EmptyMenuAdmin onReset={() => resetMenu(username)} /> : <EmptyMenuClient />}
                 renderItem={renderCardItem}
             />
         </MenuStyled >
@@ -100,5 +112,7 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.View`
+    display: flex;
+    flex-direction: column;
     flex: 1;
 `
