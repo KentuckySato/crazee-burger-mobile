@@ -15,17 +15,17 @@ export default function EmptyMenuAdmin({ onReset }: { onReset: () => void }) {
 
 const EmptyMenuAdminStyled = styled.View`
     background-color: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.strong};
-    border-bottom-right-radius: ${theme.borderRadius.extraRound};
-    display: flex;
+    /* box-shadow: ${theme.shadows.strong}; */
+    /* border-bottom-right-radius: ${theme.borderRadius.extraRound}; */
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; // permet de diminuer la largeur du bouton resetMenu
+    align-items: center; // permet de diminuer la largeur du bouton resetMenu */
 
-    position: absolute;
-    inset: 0px;
+    /* position: absolute;
+    inset: 0px; */
 
-    .title,
+    /* .title,
     .description {
         text-align: center;
         font-family: "Amatic SC", cursive;
@@ -46,5 +46,5 @@ const EmptyMenuAdminStyled = styled.View`
         margin-top: 30px;
         font-size: ${theme.fonts.size.XS};
         width: auto;
-    }
+    } */
 `
