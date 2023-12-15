@@ -1,6 +1,7 @@
 // import { CSSTransition, TransitionGroup } from "react-transition-group"
-import styled from "styled-components"
+import styled from "styled-components/native"
 import { casinoEffect } from "../../theme/animations"
+import { Text } from "react-native"
 
 type CasinoEffectProps = {
     count: string
@@ -10,18 +11,12 @@ type CasinoEffectProps = {
 export default function CasinoEffect({ count, className }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
-            {/* <TransitionGroup appear={true} component={null} className={"transition-group"}> */}
-            {/* <CSSTransition key={count} classNames={"count-animated"} timeout={300}> */}
-            <span className={className}>
-                {count}
-            </span>
-            {/* </CSSTransition> */}
-            {/* </TransitionGroup> */}
+            <Text>{count}</Text>
         </CasinoEffectStyled>
     )
 }
 
-const CasinoEffectStyled = styled.div`
+const CasinoEffectStyled = styled.View`
     position: relative;
     overflow-y: hidden;
 
@@ -29,5 +24,5 @@ const CasinoEffectStyled = styled.div`
         display: inline-block;
     }
 
-    ${casinoEffect}
+    /* ${casinoEffect} */
 `

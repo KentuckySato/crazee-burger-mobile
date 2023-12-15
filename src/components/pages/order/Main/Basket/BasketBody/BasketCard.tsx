@@ -38,7 +38,9 @@ export default function BasketCard({
         >
             <ImageContainer>
                 <Image
-                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }} source={imageSource} alt={title}
+                    source={imageSource}
+                    alt={title}
+                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }}
                 />
             </ImageContainer>
             <View className="text-info">
@@ -49,11 +51,10 @@ export default function BasketCard({
                     <Text className="price">{price}</Text>
                 </View>
                 <View className="quantity">
-                    {/* <CasinoEffect count={`x ${quantity}`} /> */}
+                    <CasinoEffect count={`x ${quantity}`} />
                 </View>
             </View>
             <DeleteButtonStyled className="delete-button" onClick={onDelete}>
-                {/* <MdDeleteForever className="icon" /> */}
                 <MaterialCommunityIcons name={"delete-forever"} color={"black"} size={30} />
             </DeleteButtonStyled>
         </BasketCardStyled>
