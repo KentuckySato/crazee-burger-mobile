@@ -10,6 +10,7 @@ import { convertStringToBoolean } from "../../../../../../utils/string"
 import { theme } from "../../../../../../theme"
 import Sticker from "../../../../../shared/Sticker"
 import { Animated, Text, View } from "react-native"
+import Separator from "../../../../../shared/Separator"
 
 export default function BasketProducts() {
 
@@ -62,41 +63,20 @@ export default function BasketProducts() {
         )
     }, [])
 
+    const renderSeparator = useCallback(() => {
+        return <Separator />
+    }, [])
+
     return (
         <BasketProductsStyled>
             <Animated.FlatList
                 data={basket}
                 renderItem={renderBasketItem}
+                ItemSeparatorComponent={renderSeparator}
                 style={{ display: 'flex', flexDirection: 'column' }}
                 refreshing={false}
                 onRefresh={() => true}
             />
-            {/* {basket.map(({ id, quantity }) => {
-                    // Find the product in the menu to get the informations (title, price, imageSource)
-                    const menuProduct = findObjectById(id, menu)
-                    if (!menuProduct) return
-
-                    const displayedPrice = convertStringToBoolean(menuProduct.isAvailable)
-                        ? formatPrice(menuProduct.price)
-                        : BASKET_MESSAGE.NOT_AVAILABLE
-
-                    return (
-                        <CardContainer>
-                            {convertStringToBoolean(menuProduct.isPublicised) && <StickerNew />}
-                            <BasketCard
-                                title={menuProduct.title}
-                                quantity={quantity}
-                                imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
-                                isSelected={productSelected.id === id && isModeAdmin}
-                                isClickable={isModeAdmin}
-                                onSelect={() => handleOnSelectBasketProduct(id)}
-                                onDelete={(event) => handleOnDelete(event, id)}
-                                className="card"
-                                price={displayedPrice}
-                            />
-                        </CardContainer>
-                    )
-                })} */}
         </BasketProductsStyled>
     )
 }

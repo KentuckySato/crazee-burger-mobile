@@ -2,7 +2,9 @@ import { MouseEventHandler } from "react"
 import styled, { css } from "styled-components/native"
 import { theme } from "../../../../../../theme"
 import CasinoEffect from "../../../../../shared/CasinoEffect"
-import { Text, View } from "react-native"
+import { Image, Text, View } from "react-native"
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 type BasketCardProps = {
     title: string
@@ -34,12 +36,11 @@ export default function BasketCard({
             $isClickable={isClickable}
             onClick={onSelect}
         >
-            <View className="delete-button" onClick={onDelete}>
-                {/* <MdDeleteForever className="icon" /> */}
-            </View>
-            <View className="image">
-                {/* <img src={imageSource} alt={title} /> */}
-            </View>
+            <ImageContainer>
+                <Image
+                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }} source={imageSource} alt={title}
+                />
+            </ImageContainer>
             <View className="text-info">
                 <View className="left-info">
                     <View className="title">
@@ -51,14 +52,36 @@ export default function BasketCard({
                     {/* <CasinoEffect count={`x ${quantity}`} /> */}
                 </View>
             </View>
+            <DeleteButtonStyled className="delete-button" onClick={onDelete}>
+                {/* <MdDeleteForever className="icon" /> */}
+                <MaterialCommunityIcons name={"delete-forever"} color={"black"} size={30} />
+            </DeleteButtonStyled>
         </BasketCardStyled>
     )
 }
 
 const BasketCardStyled = styled.View`
-    height: 86px;
+    height: auto;
     display: flex;
-    background: ${theme.colors.red};
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: ${theme.colors.white};
+`
+
+const ImageContainer = styled.View`
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: flex-end;
+    align-self: flex-end;
+    padding: 0 10px;
+    /* border: 1px solid red; */
+`
+
+const DeleteButtonStyled = styled.View`
+    /* display: none; */
+    z-index: 1;
+    padding: 10px 10px;
 `
 // const BasketCardStyled = styled.View<{ $isSelected: boolean, $isClickable: boolean }>`
 //     box-sizing: border-box;

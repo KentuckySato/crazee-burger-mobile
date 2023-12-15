@@ -11,6 +11,7 @@ import { isEmpty } from "../../../../../../utils/array"
 import Loader from "./Loader"
 import { convertStringToBoolean } from "../../../../../../utils/string"
 import { Animated, RefreshControl, View } from "react-native"
+import Separator from "../../../../../shared/Separator"
 
 export default function Menu() {
     const {
@@ -67,15 +68,7 @@ export default function Menu() {
     // }
 
     const renderSeparator = useCallback(() => {
-        return <View
-            style={{
-                borderBottomColor: theme.colors.greyBlue,
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '90%',
-                opacity: 0.2,
-            }}
-        />
+        return <Separator />
     }, [])
 
     const renderCardItem = useCallback(({ item }: { item: Product }) => (
