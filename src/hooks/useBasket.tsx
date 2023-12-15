@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { fakeBasket } from "../fakeData/fakeBasket";
-import { ProductId, ProductQuantity } from "../enums/product";
-import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array";
-import { setLocalStorage } from "../utils/window";
+import { useState } from "react"
+import { fakeBasket } from "../fakeData/fakeBasket"
+import { ProductId, ProductQuantity } from "../enums/product"
+import { deepClone, removeObjectById, findIndexById, findObjectById } from "../utils/array"
+import { setLocalStorage } from "../utils/window"
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.EMPTY)
+    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.MEDIUM)
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddBasketProduct = (idProductToAdd: ProductId, username: string) => {
@@ -31,8 +31,8 @@ export const useBasket = () => {
 
     const createNewBasketProduct = (idProductToAdd: ProductId, basketCopy: ProductQuantity[], setBasket: (basket: ProductQuantity[]) => void, username: string) => {
         // We do not re-create a whole product, we only add the extra info a basket product has in comparison to a menu product
-        const newBasketProduct = { id: idProductToAdd, quantity: 1 };
-        const newBasket = [newBasketProduct, ...basketCopy];
+        const newBasketProduct = { id: idProductToAdd, quantity: 1 }
+        const newBasket = [newBasketProduct, ...basketCopy]
         setBasket(newBasket)
         setLocalStorage(username, newBasket)
     }
