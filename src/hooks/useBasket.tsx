@@ -5,7 +5,7 @@ import { deepClone, removeObjectById, findIndexById, findObjectById } from "../u
 import { setLocalStorage } from "../utils/window"
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.MEDIUM)
+    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.LARGE)
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddBasketProduct = (idProductToAdd: ProductId, username: string) => {
