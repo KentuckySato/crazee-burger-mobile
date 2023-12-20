@@ -91,9 +91,8 @@ const BasketProductsStyled = styled.View`
 
 const CardContainer = styled.View`
     position: relative;
-    margin: 10px 16px;
-    height: 86px;
     box-sizing: border-box;
+    padding: 10px 10px;
 
     &:first-child {
         margin-top: ${theme.spacing.md};

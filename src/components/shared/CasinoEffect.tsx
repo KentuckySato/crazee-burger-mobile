@@ -5,13 +5,16 @@ import { Text } from "react-native"
 
 type CasinoEffectProps = {
     count: string
+    quantityColor: string
     className?: string
 }
 
-export default function CasinoEffect({ count, className }: CasinoEffectProps) {
+export default function CasinoEffect({ count, quantityColor = 'black', className }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
-            <Text>{count}</Text>
+            <Text style={{
+                color: quantityColor,
+            }}>{count}</Text>
         </CasinoEffectStyled>
     )
 }

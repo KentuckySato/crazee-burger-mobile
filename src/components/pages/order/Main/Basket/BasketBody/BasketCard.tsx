@@ -31,29 +31,37 @@ export default function BasketCard({
 }: BasketCardProps) {
     return (
         <BasketCardStyled
-            className={className}
             $isSelected={isSelected}
             $isClickable={isClickable}
             onClick={onSelect}
         >
             <ImageContainer>
-                <Image
+                <ImageStyled
                     source={imageSource}
                     alt={title}
-                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }}
+                    style={{
+                        // position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain"
+                        // width: 100,
+                        // height: 100,
+                        // objectFit: "contain",
+                        // resizeMode: "cover",
+                    }}
                 />
             </ImageContainer>
-            <View className="text-info">
-                <View className="left-info">
-                    <View className="title">
-                        <Text>{title}</Text>
-                    </View>
-                    <Text className="price">{price}</Text>
+
+            <TextInfoContainer className="text-info">
+                <View className="title">
+                    <Text>{title}</Text>
                 </View>
+                <Text style={{
+                    fontSize: theme.fonts.size.SM,
+                    fontWeight: theme.fonts.weights.medium,
+                    color: theme.colors.primary
+                }}>{price}</Text>
                 <View className="quantity">
-                    <CasinoEffect count={`x ${quantity}`} />
+                    <CasinoEffect quantityColor={theme.colors.primary} count={`x ${quantity}`} />
                 </View>
-            </View>
+            </TextInfoContainer>
             <DeleteButtonStyled className="delete-button" onClick={onDelete}>
                 <MaterialCommunityIcons name={"delete-forever"} color={"black"} size={30} />
             </DeleteButtonStyled>
@@ -62,27 +70,42 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.View`
-    height: auto;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background: ${theme.colors.white};
+    gap: 30px;
 `
 
 const ImageContainer = styled.View`
-    /* flex-direction: row; */
+    /* width: 100px; */
+    /* height: 100px; */
+    box-sizing: border-box;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     align-self: flex-end;
-    padding: 0 10px;
+`
+const ImageStyled = styled.Image`
+    /* padding: 5px; */
+    box-sizing: border-box;
+    width: 100;
+    height: 100;
+    object-fit: contain;
     /* border: 1px solid red; */
 `
 
-const DeleteButtonStyled = styled.View`
+const DeleteButtonStyled = styled.Pressable`
     /* display: none; */
     z-index: 1;
     padding: 10px 10px;
+`
+const TextInfoContainer = styled.View`
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    /* flex-flow: column; */
+    /* align-items: center; */
 `
 // const BasketCardStyled = styled.View<{ $isSelected: boolean, $isClickable: boolean }>`
 //     box-sizing: border-box;
