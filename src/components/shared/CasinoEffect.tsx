@@ -5,7 +5,7 @@ import { Text } from "react-native"
 
 type CasinoEffectProps = {
     count: string
-    quantityColor: string
+    quantityColor?: string
     className?: string
 }
 

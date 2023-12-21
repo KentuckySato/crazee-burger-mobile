@@ -16,6 +16,7 @@ type BasketCardProps = {
     isClickable: boolean
     onSelect: MouseEventHandler
     onDelete: MouseEventHandler
+    onIncrementProduct: MouseEventHandler
 }
 
 export default function BasketCard({
@@ -27,7 +28,8 @@ export default function BasketCard({
     isSelected = false,
     isClickable,
     onSelect,
-    onDelete
+    onDelete,
+    onIncrementProduct
 }: BasketCardProps) {
     return (
         <BasketCardStyled
@@ -36,35 +38,26 @@ export default function BasketCard({
             onClick={onSelect}
         >
             <ImageContainer>
-                <ImageStyled
-                    source={imageSource}
-                    alt={title}
-                    style={{
-                        // position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain"
-                        // width: 100,
-                        // height: 100,
-                        // objectFit: "contain",
-                        // resizeMode: "cover",
-                    }}
-                />
+                <ImageStyled source={imageSource} alt={title} />
             </ImageContainer>
 
-            <TextInfoContainer className="text-info">
-                <View className="title">
-                    <Text>{title}</Text>
-                </View>
-                <Text style={{
-                    fontSize: theme.fonts.size.SM,
-                    fontWeight: theme.fonts.weights.medium,
-                    color: theme.colors.primary
-                }}>{price}</Text>
-                <View className="quantity">
-                    <CasinoEffect quantityColor={theme.colors.primary} count={`x ${quantity}`} />
-                </View>
+            <TextInfoContainer>
+                <Text>{title}</Text>
+                <TextPrice>{price}</TextPrice>
             </TextInfoContainer>
-            <DeleteButtonStyled className="delete-button" onClick={onDelete}>
-                <MaterialCommunityIcons name={"delete-forever"} color={"black"} size={30} />
-            </DeleteButtonStyled>
+
+            <RightInfoContainer>
+                <DeleteButtonStyled onClick={onDelete}>
+                    <MaterialCommunityIcons name={"delete-outline"} color={"black"} size={23} />
+                </DeleteButtonStyled>
+                <View>
+                    <CasinoEffect count={`${quantity}`} />
+                </View>
+                <IncrementButtonStyled onClick={onIncrementProduct}>
+                    <MaterialCommunityIcons name={"plus"} color={"black"} size={23} />
+                </IncrementButtonStyled>
+            </RightInfoContainer>
+
         </BasketCardStyled>
     )
 }
@@ -95,17 +88,29 @@ const ImageStyled = styled.Image`
     /* border: 1px solid red; */
 `
 
+const RightInfoContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    background-color: ${theme.colors.greyLight};
+    border-radius: ${theme.borderRadius.extraRound};
+    gap: 16px;
+    padding: 6px 9px;
+`
 const DeleteButtonStyled = styled.Pressable`
-    /* display: none; */
     z-index: 1;
-    padding: 10px 10px;
+`
+const IncrementButtonStyled = styled.Pressable`
+    z-index: 1;
 `
 const TextInfoContainer = styled.View`
     flex: 1;
     flex-direction: column;
     gap: 5px;
-    /* flex-flow: column; */
-    /* align-items: center; */
+`
+const TextPrice = styled.Text`
+    font-size: ${theme.fonts.size.SM};
+    font-weight: ${theme.fonts.weights.medium};
+    color: ${theme.colors.primary};
 `
 // const BasketCardStyled = styled.View<{ $isSelected: boolean, $isClickable: boolean }>`
 //     box-sizing: border-box;
