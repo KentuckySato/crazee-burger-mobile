@@ -5,7 +5,7 @@ import { deepClone, removeObjectById, findIndexById, findObjectById } from "../u
 import { setLocalStorage } from "../utils/window"
 
 export const useBasket = () => {
-    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.LARGE)
+    const [basket, setBasket] = useState<ProductQuantity[]>(fakeBasket.EMPTY)
 
     // Comportements (gestionnaire de state ou "state handlers")
     const handleAddBasketProduct = (idProductToAdd: ProductId, username: string) => {
@@ -25,7 +25,7 @@ export const useBasket = () => {
         if (indexOfBasketProductToIncrement != undefined && indexOfBasketProductToIncrement >= 0) {
             basketCopy[indexOfBasketProductToIncrement].quantity += 1
             setBasket(basketCopy)
-            setLocalStorage(username, basketCopy)
+            // setLocalStorage(username, basketCopy)
         }
     }
 
@@ -34,7 +34,7 @@ export const useBasket = () => {
         const newBasketProduct = { id: idProductToAdd, quantity: 1 }
         const newBasket = [newBasketProduct, ...basketCopy]
         setBasket(newBasket)
-        setLocalStorage(username, newBasket)
+        // setLocalStorage(username, newBasket)
     }
 
 
@@ -42,7 +42,7 @@ export const useBasket = () => {
         const basketUpdated = removeObjectById(idOfProductToDelete, basket)
         if (basketUpdated) {
             setBasket(basketUpdated)
-            setLocalStorage(username, basketUpdated)
+            // setLocalStorage(username, basketUpdated)
         }
     }
 

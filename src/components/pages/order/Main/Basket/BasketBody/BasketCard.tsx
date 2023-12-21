@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react"
 import styled, { css } from "styled-components/native"
 import { theme } from "../../../../../../theme"
 import CasinoEffect from "../../../../../shared/CasinoEffect"
-import { Image, Text, View } from "react-native"
+import { GestureResponderEvent, Image, Pressable, Text, View } from "react-native"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
@@ -15,8 +15,8 @@ type BasketCardProps = {
     isSelected: boolean
     isClickable: boolean
     onSelect: MouseEventHandler
-    onDelete: MouseEventHandler
-    onIncrementProduct: MouseEventHandler
+    onDelete: GestureResponderEvent
+    onIncrementProduct: GestureResponderEvent
 }
 
 export default function BasketCard({
@@ -47,14 +47,18 @@ export default function BasketCard({
             </TextInfoContainer>
 
             <RightInfoContainer>
-                <DeleteButtonStyled onClick={onDelete}>
-                    <MaterialCommunityIcons name={"delete-outline"} color={"black"} size={23} />
+                <DeleteButtonStyled onPress={onDelete}>
+                    {({ pressed }) => (
+                        <MaterialCommunityIcons name={"delete-outline"} color={pressed ? "grey" : "black"} size={23} />
+                    )}
                 </DeleteButtonStyled>
                 <View>
                     <CasinoEffect count={`${quantity}`} />
                 </View>
-                <IncrementButtonStyled onClick={onIncrementProduct}>
-                    <MaterialCommunityIcons name={"plus"} color={"black"} size={23} />
+                <IncrementButtonStyled onPress={onIncrementProduct}>
+                    {({ pressed }) => (
+                        <MaterialCommunityIcons name={"plus"} color={pressed ? "grey" : "black"} size={23} />
+                    )}
                 </IncrementButtonStyled>
             </RightInfoContainer>
 

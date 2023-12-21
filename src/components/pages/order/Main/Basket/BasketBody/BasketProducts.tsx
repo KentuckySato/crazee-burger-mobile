@@ -21,8 +21,13 @@ export default function BasketProducts() {
         isModeAdmin,
         productSelected,
         handleProductSelected,
-        handleDeleteBasketProduct
+        handleDeleteBasketProduct,
+        handleAddBasketProduct
     } = useContext(OrderContext)
+
+    const handleIncrementButton = (idProductToAdd: ProductId) => {
+        handleAddBasketProduct(idProductToAdd, username)
+    }
 
     const handleOnDelete = (event: React.MouseEvent<Element, MouseEvent>, idOfProduct: ProductId) => {
         event.stopPropagation()
@@ -35,7 +40,7 @@ export default function BasketProducts() {
         handleProductSelected(idOfProductSelected)
     }
 
-    const renderBasketItem = useCallback(({ item }: { item: ProductQuantity }) => {
+    const renderBasketItem = ({ item }: { item: ProductQuantity }) => {
 
         // Find the product in the menu to get the informations (title, price, imageSource)
         const menuProduct = findObjectById(item.id, menu)
@@ -49,6 +54,7 @@ export default function BasketProducts() {
             <CardContainer>
                 {convertStringToBoolean(menuProduct.isPublicised) && <StickerNew />}
                 <BasketCard
+                    key={item.id}
                     title={menuProduct.title}
                     quantity={item.quantity}
                     imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT}
@@ -56,12 +62,13 @@ export default function BasketProducts() {
                     isClickable={isModeAdmin}
                     onSelect={() => handleOnSelectBasketProduct(item.id)}
                     onDelete={(event) => handleOnDelete(event, item.id)}
+                    onIncrementProduct={() => handleIncrementButton(item.id)}
                     className="card"
                     price={displayedPrice}
                 />
             </CardContainer>
         )
-    }, [])
+    }
 
     const renderSeparator = useCallback(() => {
         return <Separator />
