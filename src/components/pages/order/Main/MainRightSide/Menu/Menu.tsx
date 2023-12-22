@@ -71,12 +71,12 @@ export default function Menu() {
         return <Separator />
     }, [])
 
-    const renderCardItem = useCallback(({ item }: { item: Product }) => (
+    const renderCardItem = ({ item }: { item: Product }) => (
         <Card
             id={item.id}
             title={item.title}
             imageSource={item.imageSource ? item.imageSource : IMAGE_BY_DEFAULT}
-            leftDescription={formatPrice(item.price)}
+            price={formatPrice(item.price)}
             isHoverable={isModeAdmin}
             isSelected={productSelected.id === item.id && isModeAdmin}
             hasDeleteButton={isModeAdmin}
@@ -86,7 +86,7 @@ export default function Menu() {
             overlapImageSource={IMAGE_OUT_OF_STOCK}
             isOverlapImageVisible={!convertStringToBoolean(item.isAvailable)}
         />
-    ), [])
+    )
 
     return (
         <MenuStyled>
@@ -108,4 +108,5 @@ const MenuStyled = styled.View`
     display: flex;
     flex-direction: column;
     flex: 1;
+    background-color: ${theme.colors.white};
 `

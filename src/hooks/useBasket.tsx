@@ -11,6 +11,7 @@ export const useBasket = () => {
     const handleAddBasketProduct = (idProductToAdd: ProductId, username: string) => {
         const basketCopy = deepClone(basket)
         const productAlreadyInBasket = findObjectById(idProductToAdd, basketCopy)
+        console.log('productAlreadyInBasket: ', productAlreadyInBasket)
 
         if (productAlreadyInBasket) {
             incrementProductAlreadyInBasket(idProductToAdd, basketCopy, username)
@@ -45,6 +46,8 @@ export const useBasket = () => {
             // setLocalStorage(username, basketUpdated)
         }
     }
+
+    console.log('basket: ', basket)
 
     return { basket, setBasket, handleAddBasketProduct, handleDeleteBasketProduct }
 };

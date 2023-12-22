@@ -7,7 +7,7 @@ type CardProps = {
     id: number | string
     title: string | undefined
     imageSource: string
-    leftDescription: string
+    price: string
     hasDeleteButton?: boolean
     isSelected: boolean
     isHoverable: boolean
@@ -21,7 +21,7 @@ type CardProps = {
 export default function Card({
     title,
     imageSource,
-    leftDescription,
+    price,
     isHoverable,
     hasDeleteButton,
     isSelected = false,
@@ -36,16 +36,14 @@ export default function Card({
             <CardInfo>
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>
-                    <LeftDescription>{leftDescription}</LeftDescription>
+                    <Price>{price}</Price>
                     <RightDescription>
-                        {/* <Button
-                                    type="button"
-                                    label="Ajouter"
-                                    className="add-to-basket-button"
-                                    onClick={onAdd} disabled={isOverlapImageVisible}
-                                /> */}
                         <Pressable onPress={onAdd} disabled={isOverlapImageVisible}>
-                            <BasketButton>Ajouter</BasketButton>
+                            {({ pressed }) => (
+                                <PressableContainer style={{ backgroundColor: pressed ? theme.colors.white : theme.colors.primary }}>
+                                    <BasketButton>Ajouter</BasketButton>
+                                </PressableContainer>
+                            )}
                         </Pressable>
                     </RightDescription>
                 </CardDescription>
@@ -67,11 +65,12 @@ const CardContainer = styled.View`
     /* border: 1px solid green; */
     justify-content: space-between;
     width: auto;
+    /* background-color: ${theme.colors.white}; */
 `
 const CardInfo = styled.View`
-    display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
 `
 
 const ImageContainer = styled.View`
@@ -91,8 +90,9 @@ const CardDescription = styled.View`
     font-family: "Amatic SC";
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.bold};
+    gap: 10px;
 `
-const LeftDescription = styled.Text`
+const Price = styled.Text`
     text-overflow: ellipsis;
     font-weight: ${theme.fonts.weights.medium};
     color: ${theme.colors.primary};
@@ -100,9 +100,16 @@ const LeftDescription = styled.Text`
 const RightDescription = styled.Text`
     font-size: ${theme.fonts.size.P1};
 `
+const PressableContainer = styled.View`
+    padding: 12px;
+    border-radius: ${theme.borderRadius.round};
+    background-color: ${theme.colors.primary};
+
+`
 const BasketButton = styled.Text`
     font-weight: ${theme.fonts.weights.semiBold};
     font-size: ${theme.fonts.size.XS};
+    color: ${theme.colors.white};
 `
 
 
