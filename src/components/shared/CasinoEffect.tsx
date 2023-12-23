@@ -1,4 +1,3 @@
-// import { CSSTransition, TransitionGroup } from "react-transition-group"
 import styled from "styled-components/native"
 import { casinoEffect } from "../../theme/animations"
 import { Text } from "react-native"
@@ -6,13 +5,13 @@ import { Text } from "react-native"
 type CasinoEffectProps = {
     count: string
     quantityColor?: string
-    className?: string
 }
 
-export default function CasinoEffect({ count, quantityColor = 'black', className }: CasinoEffectProps) {
+export default function CasinoEffect({ count, quantityColor = 'black' }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
             <Text style={{
+                flex: 1,
                 color: quantityColor,
             }}>{count}</Text>
         </CasinoEffectStyled>
@@ -21,7 +20,7 @@ export default function CasinoEffect({ count, quantityColor = 'black', className
 
 const CasinoEffectStyled = styled.View`
     position: relative;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 
     span {
         display: inline-block;

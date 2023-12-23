@@ -1,17 +1,13 @@
-import { PropsWithChildren } from "react";
-import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { PropsWithChildren } from "react"
+import styled from "styled-components/native"
+import { theme } from "../../../../../../theme"
 
-type HeaderProps = {
-    className?: string
+export default function BasketHeader({ children }: PropsWithChildren) {
+    return <BasketHeaderStyled>{children}</BasketHeaderStyled>
 }
 
-export default function BasketHeader({ className, children }: PropsWithChildren<HeaderProps>) {
-    return <BasketHeaderStyled className={className}>{children}</BasketHeaderStyled>
-}
-
-const BasketHeaderStyled = styled.div`
+const BasketHeaderStyled = styled.View`
     height: 70px;
-    background: ${theme.colors.background_dark};
+    /* background: ${theme.colors.background_dark}; */
     padding: 0 16px;
-`;
+`
