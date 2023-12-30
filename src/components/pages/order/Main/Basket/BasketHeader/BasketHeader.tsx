@@ -8,6 +8,8 @@ export default function BasketHeader({ children }: PropsWithChildren) {
 
 const BasketHeaderStyled = styled.View`
     height: 70px;
-    /* background: ${theme.colors.background_dark}; */
+    background: ${theme.colors.background_dark};
     padding: 0 16px;
+    /* bottom: -10px; */
+    /* position: relative; */
 `

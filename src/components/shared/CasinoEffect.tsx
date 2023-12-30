@@ -1,6 +1,7 @@
 import styled from "styled-components/native"
 import { casinoEffect } from "../../theme/animations"
 import { Text } from "react-native"
+import { theme } from "../../theme"
 
 type CasinoEffectProps = {
     count: string
@@ -11,20 +12,16 @@ export default function CasinoEffect({ count, quantityColor = 'black' }: CasinoE
     return (
         <CasinoEffectStyled>
             <Text style={{
-                flex: 1,
                 color: quantityColor,
+                fontWeight: theme.fonts.weights.bold,
+                fontSize: 32,
+                fontFamily: theme.fonts.family.stylish,
+                letterSpacing: 2
             }}>{count}</Text>
         </CasinoEffectStyled>
     )
 }
 
 const CasinoEffectStyled = styled.View`
-    position: relative;
-    /* overflow-y: hidden; */
-
-    span {
-        display: inline-block;
-    }
-
     /* ${casinoEffect} */
 `

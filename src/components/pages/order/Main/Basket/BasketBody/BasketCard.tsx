@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react"
 import styled, { css } from "styled-components/native"
 import { theme } from "../../../../../../theme"
 import CasinoEffect from "../../../../../shared/CasinoEffect"
-import { GestureResponderEvent, Image, Pressable, Text, View } from "react-native"
+import { Animated, GestureResponderEvent, Image, Pressable, Text, View } from "react-native"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
@@ -53,7 +53,8 @@ export default function BasketCard({
                     )}
                 </DeleteButtonStyled>
                 <View>
-                    <CasinoEffect count={`${quantity}`} />
+                    {/* <CasinoEffect count={`${quantity}`} /> */}
+                    <Text>{quantity}</Text>
                 </View>
                 <IncrementButtonStyled onPress={onIncrementProduct}>
                     {({ pressed }) => (

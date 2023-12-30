@@ -14,8 +14,8 @@ export default function BasketBody() {
                 isEmpty(basket)
                     ? <EmptyBasket isLoading={menu === undefined} />
                     : <>
-                        <Total />
                         <BasketProducts />
+                        <Total />
                     </>
             }
         </>

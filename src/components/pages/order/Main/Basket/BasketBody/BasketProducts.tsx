@@ -92,6 +92,7 @@ const BasketProductsStyled = styled.View`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    height: 90%;
 
     /* ${basketProductsAnimation} */
 `

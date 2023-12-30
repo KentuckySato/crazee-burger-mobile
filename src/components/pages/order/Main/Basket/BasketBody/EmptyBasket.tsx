@@ -1,6 +1,7 @@
 import styled from "styled-components/native"
 import { theme } from "../../../../../../theme"
 import { BASKET_MESSAGE } from "../../../../../../enums/product"
+import { View } from "react-native"
 
 type EmptyBasketProps = {
     isLoading: boolean
@@ -8,29 +9,20 @@ type EmptyBasketProps = {
 
 export default function EmptyBasket({ isLoading }: EmptyBasketProps) {
     return (
-        <EmptyBasketStyled>
+        <View>
             <EmptyMessage>
                 {isLoading ? BASKET_MESSAGE.LOADING : BASKET_MESSAGE.EMPTY}
             </EmptyMessage>
-        </EmptyBasketStyled>
+        </View>
     )
 }
 
-const EmptyBasketStyled = styled.View`
-    flex: 1;
-    background: ${theme.colors.background_white};
-    /* box-shadow: ${theme.shadows.basket}; */
-`
-
 const EmptyMessage = styled.Text`
-    display: flex;
-    height: calc(95vh - 10vh - 70px - 70px);
+    height: 100%;
     text-align: center;
-    flex: 1;
     justify-content: center;
     align-items: center;
     align-self: center;
-    line-height: 2;
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};

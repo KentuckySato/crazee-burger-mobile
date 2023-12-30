@@ -15,8 +15,8 @@ export default function Total() {
     return (
         <BasketHeader>
             <TotalStyled>
-                <Text>Total</Text>
-                <CasinoEffect count={formatPrice(sumToPay)} />
+                <TotalAmount>Total</TotalAmount>
+                <CasinoEffect count={formatPrice(sumToPay)} quantityColor={theme.colors.primary} />
             </TotalStyled>
         </BasketHeader>
     )
@@ -24,17 +24,15 @@ export default function Total() {
 
 const TotalStyled = styled.View`
     height: 100%;
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
+`
+
+const TotalAmount = styled.Text`
     color: ${theme.colors.primary};
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.regular};
     letter-spacing: 2px;
-
-    .amount {
-        font-weight: ${theme.fonts.weights.bold};
-    }
-`;
-
+`

@@ -9,8 +9,6 @@ export default function Basket() {
     return (
         <BasketStyled>
             <View>
-                {/* <Text>Basket</Text> */}
-                {/* <Total /> */}
                 <BasketBody />
                 {/* <BasketFooter /> */}
             </View>

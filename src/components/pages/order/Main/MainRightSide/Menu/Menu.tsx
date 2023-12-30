@@ -62,10 +62,10 @@ export default function Menu() {
     // Render
     if (menu === undefined) return <Loader />
 
-    // if (isEmpty(menu)) {
-    //     if (!isModeAdmin) return <EmptyMenuClient />
-    //     return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
-    // }
+    if (isEmpty(menu)) {
+        if (!isModeAdmin) return <EmptyMenuClient />
+        return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
+    }
 
     const renderSeparator = useCallback(() => {
         return <Separator />
@@ -105,8 +105,5 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.View`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
     background-color: ${theme.colors.white};
 `

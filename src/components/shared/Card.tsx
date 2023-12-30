@@ -38,7 +38,10 @@ export default function Card({
                 <CardDescription>
                     <Price>{price}</Price>
                     <RightDescription>
-                        <Pressable onPress={onAdd} disabled={isOverlapImageVisible}>
+                        <Pressable
+                            onPress={onAdd}
+                            disabled={isOverlapImageVisible}
+                        >
                             {({ pressed }) => (
                                 <PressableContainer style={{ backgroundColor: pressed ? theme.colors.white : theme.colors.primary }}>
                                     <BasketButton>Ajouter</BasketButton>
@@ -50,7 +53,9 @@ export default function Card({
             </CardInfo>
             <ImageContainer>
                 <Image
-                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }} source={imageSource} alt={title}
+                    source={imageSource}
+                    alt={title}
+                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }}
                 />
             </ImageContainer>
         </CardContainer>
@@ -93,7 +98,6 @@ const CardDescription = styled.View`
     gap: 10px;
 `
 const Price = styled.Text`
-    text-overflow: ellipsis;
     font-weight: ${theme.fonts.weights.medium};
     color: ${theme.colors.primary};
 `
