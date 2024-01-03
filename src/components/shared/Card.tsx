@@ -7,21 +7,21 @@ type CardProps = {
     id: number | string
     title: string | undefined
     imageSource: string
-    leftDescription: string
+    price: string
     hasDeleteButton?: boolean
     isSelected: boolean
     isHoverable: boolean
     overlapImageSource: string
     isOverlapImageVisible?: boolean
-    onDelete: MouseEventHandler
-    onSelect: GestureResponderEvent
-    onAdd: MouseEventHandler
+    onDelete: (event: GestureResponderEvent) => void
+    onSelect: () => void
+    onAdd: (event: GestureResponderEvent) => void
 }
 
 export default function Card({
     title,
     imageSource,
-    leftDescription,
+    price,
     isHoverable,
     hasDeleteButton,
     isSelected = false,
@@ -36,23 +36,31 @@ export default function Card({
             <CardInfo>
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>
-                    <LeftDescription>{leftDescription}</LeftDescription>
+                    <Price>{price}</Price>
                     <RightDescription>
-                        {/* <Button
-                                    type="button"
-                                    label="Ajouter"
-                                    className="add-to-basket-button"
-                                    onClick={onAdd} disabled={isOverlapImageVisible}
-                                /> */}
-                        <Pressable onPress={onAdd} disabled={isOverlapImageVisible}>
-                            <BasketButton>Ajouter</BasketButton>
+                        <Pressable
+                            onPress={onAdd}
+                            disabled={isOverlapImageVisible}
+                        >
+                            {({ pressed }) => (
+                                <PressableContainer style={{
+                                    backgroundColor: pressed ? theme.colors.white : theme.colors.primary,
+                                    borderColor: pressed ? theme.colors.primary : theme.colors.white,
+                                }}>
+                                    <BasketButton style={{
+                                        color: pressed ? theme.colors.primary : theme.colors.white,
+                                    }}>Ajouter</BasketButton>
+                                </PressableContainer>
+                            )}
                         </Pressable>
                     </RightDescription>
                 </CardDescription>
             </CardInfo>
             <ImageContainer>
                 <Image
-                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }} source={imageSource} alt={title}
+                    source={imageSource}
+                    alt={title}
+                    style={{ position: "relative", width: 100, height: 100, alignSelf: "flex-end", objectFit: "contain" }}
                 />
             </ImageContainer>
         </CardContainer>
@@ -67,11 +75,12 @@ const CardContainer = styled.View`
     /* border: 1px solid green; */
     justify-content: space-between;
     width: auto;
+    /* background-color: ${theme.colors.white}; */
 `
 const CardInfo = styled.View`
-    display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
 `
 
 const ImageContainer = styled.View`
@@ -91,18 +100,25 @@ const CardDescription = styled.View`
     font-family: "Amatic SC";
     font-size: ${theme.fonts.size.P4};
     font-weight: ${theme.fonts.weights.bold};
+    gap: 10px;
 `
-const LeftDescription = styled.Text`
-    text-overflow: ellipsis;
+const Price = styled.Text`
     font-weight: ${theme.fonts.weights.medium};
     color: ${theme.colors.primary};
 `
 const RightDescription = styled.Text`
     font-size: ${theme.fonts.size.P1};
 `
+const PressableContainer = styled.View`
+    padding: 12px;
+    border-radius: ${theme.borderRadius.round};
+    background-color: ${theme.colors.primary};
+
+`
 const BasketButton = styled.Text`
     font-weight: ${theme.fonts.weights.semiBold};
     font-size: ${theme.fonts.size.XS};
+    color: ${theme.colors.white};
 `
 
 

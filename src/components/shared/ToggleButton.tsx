@@ -80,8 +80,8 @@ const ToggleButtonStyled = styled.div`
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      text-overflow: ellipsis;
-      overflow: hidden;
+      /* text-overflow: ellipsis; */
+      /* overflow: hidden; */
     }
 
     // outside box

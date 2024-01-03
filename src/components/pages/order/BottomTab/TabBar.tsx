@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import styled from 'styled-components/native'
 import { theme } from '../../../../theme'
@@ -10,6 +10,9 @@ type TabBarProps = {
 }
 
 export default function TabBar({ state, descriptors, navigation }: TabBarProps) {
+    // console.log('state:', state)
+    // console.log('descriptors:', descriptors)
+    // console.log('navigation:', navigation)
     return (
         <TabBarStyled>
             {state.routes.map((route: {}, index: number) => {
@@ -20,6 +23,9 @@ export default function TabBar({ state, descriptors, navigation }: TabBarProps) 
                         : options.title !== undefined
                             ? options.title
                             : route.name
+
+
+                const badge: number | null = options.tabBarBadge ? options.tabBarBadge : null
 
                 const iconTab: Function | null = options.tabBarIcon ? options.tabBarIcon : null
 
@@ -53,9 +59,22 @@ export default function TabBar({ state, descriptors, navigation }: TabBarProps) 
                         testID={options.tabBarTestID}
                         onPress={handleOnPress}
                         onLongPress={handleOnLongPress}
-                        style={{ flex: 1, alignItems: 'center', top: 5 }}
+                        style={{ flex: 1, alignItems: 'center', top: 5, position: 'relative' }}
                     >
                         {iconTab && iconTab({ focused: isFocused, color: isFocused ? theme.colors.redSecondary : theme.colors.white, size: 30 })}
+
+                        {badge &&
+                            <BadgeStyled>
+                                <Text
+                                    style={{
+                                        color: theme.colors.white,
+                                        fontSize: 12,
+                                        fontWeight: 'bold',
+                                    }}>
+                                    {badge}
+                                </Text>
+                            </BadgeStyled>
+                        }
                     </TouchableOpacity>
                 )
             })}
@@ -70,4 +89,16 @@ const TabBarStyled = styled.View`
     justify-content: space-around;
     align-items: center;
     background-color: ${theme.colors.primary};
+`
+
+const BadgeStyled = styled.View`
+    color: ${theme.colors.white};
+    font-size: 12px;
+    position: absolute;
+    top: -10px;
+    right: 40px;
+    font-weight: bold;
+    background-color: ${theme.colors.redSecondary};
+    border-radius: ${theme.borderRadius.circlePx};
+    padding: 2px 5px;
 `

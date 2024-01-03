@@ -9,10 +9,8 @@ export default function Basket() {
     return (
         <BasketStyled>
             <View>
-                <Text>Basket</Text>
-                {/* <Total />
                 <BasketBody />
-                <BasketFooter /> */}
+                {/* <BasketFooter /> */}
             </View>
             {/* <FaShoppingBasket className="basket-icon" onClick={handleShowBasketMobile} /> */}
         </BasketStyled>
@@ -20,7 +18,7 @@ export default function Basket() {
 }
 
 const BasketStyled = styled.View`
-    background: ${theme.colors.blue};
+    background: ${theme.colors.white};
     display: flex;
     flex-direction: column;
     border-bottom-left-radius: ${theme.borderRadius.extraRound};

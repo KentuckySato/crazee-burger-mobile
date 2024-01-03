@@ -13,7 +13,7 @@ export default function Welcome() {
 
 const WelcomeStyled = styled.View`
     display: 'flex';
-    max-height: '100%';
+    max-height: 100%;
     color: ${theme.colors.primary};
     min-width: 200px;
 `

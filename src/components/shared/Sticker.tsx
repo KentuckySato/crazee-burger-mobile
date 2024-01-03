@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components/native"
 import { theme } from "../../theme"
 
 type StickerProps = {
@@ -10,7 +10,7 @@ export default function Sticker({ label = "new", className }: StickerProps) {
     return <StickerStyled className={className}>{label}</StickerStyled>
 }
 
-const StickerStyled = styled.span`
+const StickerStyled = styled.Text`
     font-size: ${theme.fonts.size.XXXS};
     padding: 1em;
     width: 15px;

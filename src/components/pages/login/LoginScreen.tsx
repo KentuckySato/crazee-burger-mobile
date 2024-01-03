@@ -25,7 +25,7 @@ export default function LoginScreen() {
 }
 
 const LoginScreenStyled = styled.View`
-    height: "100%";
+    height: 100%;
     width: auto;
     display: flex;
     flex-direction: column;

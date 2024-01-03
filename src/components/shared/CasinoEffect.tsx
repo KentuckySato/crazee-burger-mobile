@@ -1,33 +1,27 @@
-// import { CSSTransition, TransitionGroup } from "react-transition-group"
-import styled from "styled-components"
+import styled from "styled-components/native"
 import { casinoEffect } from "../../theme/animations"
+import { Text } from "react-native"
+import { theme } from "../../theme"
 
 type CasinoEffectProps = {
     count: string
-    className?: string
+    quantityColor?: string
 }
 
-export default function CasinoEffect({ count, className }: CasinoEffectProps) {
+export default function CasinoEffect({ count, quantityColor = 'black' }: CasinoEffectProps) {
     return (
         <CasinoEffectStyled>
-            {/* <TransitionGroup appear={true} component={null} className={"transition-group"}> */}
-            {/* <CSSTransition key={count} classNames={"count-animated"} timeout={300}> */}
-            <span className={className}>
-                {count}
-            </span>
-            {/* </CSSTransition> */}
-            {/* </TransitionGroup> */}
+            <Text style={{
+                color: quantityColor,
+                fontWeight: theme.fonts.weights.bold,
+                fontSize: 32,
+                fontFamily: theme.fonts.family.stylish,
+                letterSpacing: 2
+            }}>{count}</Text>
         </CasinoEffectStyled>
     )
 }
 
-const CasinoEffectStyled = styled.div`
-    position: relative;
-    overflow-y: hidden;
-
-    span {
-        display: inline-block;
-    }
-
-    ${casinoEffect}
+const CasinoEffectStyled = styled.View`
+    /* ${casinoEffect} */
 `

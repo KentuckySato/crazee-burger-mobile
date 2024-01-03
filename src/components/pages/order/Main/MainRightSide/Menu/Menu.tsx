@@ -10,7 +10,8 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, Product, ProductId
 import { isEmpty } from "../../../../../../utils/array"
 import Loader from "./Loader"
 import { convertStringToBoolean } from "../../../../../../utils/string"
-import { Animated, RefreshControl, View } from "react-native"
+import { Animated, GestureResponderEvent, RefreshControl } from "react-native"
+import Separator from "../../../../../shared/Separator"
 
 export default function Menu() {
     const {
@@ -35,7 +36,7 @@ export default function Menu() {
         handleProductSelected(idOfProductSelected)
     }
 
-    const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
+    const handleCardDelete = (event: GestureResponderEvent, idProductToDelete: ProductId) => {
         event.stopPropagation()
 
         handleDeleteMenuProduct(idProductToDelete, username)
@@ -46,7 +47,7 @@ export default function Menu() {
         titleFieldRef.current?.focus()
     }
 
-    const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
+    const handleAddButton = (event: GestureResponderEvent, idProductToAdd: ProductId) => {
         event.stopPropagation()
         handleAddBasketProduct(idProductToAdd, username)
     }
@@ -61,39 +62,31 @@ export default function Menu() {
     // Render
     if (menu === undefined) return <Loader />
 
-    // if (isEmpty(menu)) {
-    //     if (!isModeAdmin) return <EmptyMenuClient />
-    //     return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
-    // }
+    if (isEmpty(menu)) {
+        if (!isModeAdmin) return <EmptyMenuClient />
+        return <EmptyMenuAdmin onReset={() => resetMenu(username)} />
+    }
 
     const renderSeparator = useCallback(() => {
-        return <View
-            style={{
-                borderBottomColor: theme.colors.greyBlue,
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '90%',
-                opacity: 0.2,
-            }}
-        />
+        return <Separator />
     }, [])
 
-    const renderCardItem = useCallback(({ item }: { item: Product }) => (
+    const renderCardItem = ({ item }: { item: Product }) => (
         <Card
             id={item.id}
             title={item.title}
             imageSource={item.imageSource ? item.imageSource : IMAGE_BY_DEFAULT}
-            leftDescription={formatPrice(item.price)}
+            price={formatPrice(item.price)}
             isHoverable={isModeAdmin}
             isSelected={productSelected.id === item.id && isModeAdmin}
             hasDeleteButton={isModeAdmin}
-            onDelete={(event) => handleCardDelete(event, item.id)}
+            onDelete={(event: GestureResponderEvent) => handleCardDelete(event, item.id)}
             onSelect={() => handleOnSelect(item.id)}
-            onAdd={(event) => handleAddButton(event, item.id)}
+            onAdd={(event: GestureResponderEvent) => handleAddButton(event, item.id)}
             overlapImageSource={IMAGE_OUT_OF_STOCK}
             isOverlapImageVisible={!convertStringToBoolean(item.isAvailable)}
         />
-    ), [])
+    )
 
     return (
         <MenuStyled>
@@ -112,7 +105,5 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.View`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    background-color: ${theme.colors.white};
 `
