@@ -9,7 +9,7 @@ import { formatPrice } from "../../../../../../utils/maths"
 import { convertStringToBoolean } from "../../../../../../utils/string"
 import { theme } from "../../../../../../theme"
 import Sticker from "../../../../../shared/Sticker"
-import { Animated, Text, View } from "react-native"
+import { Animated, Text } from "react-native"
 import Separator from "../../../../../shared/Separator"
 
 export default function BasketProducts() {

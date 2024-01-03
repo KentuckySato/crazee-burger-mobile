@@ -6,7 +6,6 @@ import { useContext } from "react"
 import { OrderContext } from "../../../../../../context/OrderContext"
 import { formatPrice } from "../../../../../../utils/maths"
 import CasinoEffect from "../../../../../shared/CasinoEffect"
-import { Text } from "react-native"
 
 export default function Total() {
     const { basket, menu } = useContext(OrderContext)

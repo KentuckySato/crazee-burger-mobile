@@ -101,7 +101,6 @@ const OrderPageStyled = styled.View`
     height: 100%;
     display: flex;
     justify-content: center;
-
 `
 
 const Container = styled.View`
