@@ -10,7 +10,7 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT, IMAGE_OUT_OF_STOCK, Product, ProductId
 import { isEmpty } from "../../../../../../utils/array"
 import Loader from "./Loader"
 import { convertStringToBoolean } from "../../../../../../utils/string"
-import { Animated, RefreshControl, View } from "react-native"
+import { Animated, GestureResponderEvent, RefreshControl } from "react-native"
 import Separator from "../../../../../shared/Separator"
 
 export default function Menu() {
@@ -36,7 +36,7 @@ export default function Menu() {
         handleProductSelected(idOfProductSelected)
     }
 
-    const handleCardDelete = (event: React.MouseEvent<Element, MouseEvent>, idProductToDelete: ProductId) => {
+    const handleCardDelete = (event: GestureResponderEvent, idProductToDelete: ProductId) => {
         event.stopPropagation()
 
         handleDeleteMenuProduct(idProductToDelete, username)
@@ -47,7 +47,7 @@ export default function Menu() {
         titleFieldRef.current?.focus()
     }
 
-    const handleAddButton = (event: React.MouseEvent<Element, MouseEvent>, idProductToAdd: ProductId) => {
+    const handleAddButton = (event: GestureResponderEvent, idProductToAdd: ProductId) => {
         event.stopPropagation()
         handleAddBasketProduct(idProductToAdd, username)
     }
@@ -80,9 +80,9 @@ export default function Menu() {
             isHoverable={isModeAdmin}
             isSelected={productSelected.id === item.id && isModeAdmin}
             hasDeleteButton={isModeAdmin}
-            onDelete={(event) => handleCardDelete(event, item.id)}
+            onDelete={(event: GestureResponderEvent) => handleCardDelete(event, item.id)}
             onSelect={() => handleOnSelect(item.id)}
-            onAdd={(event) => handleAddButton(event, item.id)}
+            onAdd={(event: GestureResponderEvent) => handleAddButton(event, item.id)}
             overlapImageSource={IMAGE_OUT_OF_STOCK}
             isOverlapImageVisible={!convertStringToBoolean(item.isAvailable)}
         />

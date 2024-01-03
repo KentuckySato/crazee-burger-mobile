@@ -13,9 +13,9 @@ type CardProps = {
     isHoverable: boolean
     overlapImageSource: string
     isOverlapImageVisible?: boolean
-    onDelete: MouseEventHandler
-    onSelect: GestureResponderEvent
-    onAdd: MouseEventHandler
+    onDelete: (event: GestureResponderEvent) => void
+    onSelect: () => void
+    onAdd: (event: GestureResponderEvent) => void
 }
 
 export default function Card({
@@ -43,8 +43,13 @@ export default function Card({
                             disabled={isOverlapImageVisible}
                         >
                             {({ pressed }) => (
-                                <PressableContainer style={{ backgroundColor: pressed ? theme.colors.white : theme.colors.primary }}>
-                                    <BasketButton>Ajouter</BasketButton>
+                                <PressableContainer style={{
+                                    backgroundColor: pressed ? theme.colors.white : theme.colors.primary,
+                                    borderColor: pressed ? theme.colors.primary : theme.colors.white,
+                                }}>
+                                    <BasketButton style={{
+                                        color: pressed ? theme.colors.primary : theme.colors.white,
+                                    }}>Ajouter</BasketButton>
                                 </PressableContainer>
                             )}
                         </Pressable>
